@@ -18,6 +18,7 @@
   ],
   "include": [
     "./src/client/*",
+    "./src/common/*",
     "./src/client/types/**/*.d.ts"
   ]
 }

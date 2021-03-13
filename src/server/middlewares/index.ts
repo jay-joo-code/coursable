@@ -1,7 +1,5 @@
-import logger from './logger';
-import checkMethod from './checkMethod';
-// The order of middlewares matter
+import logger from './logger'
+
 export default {
-    checkMethod,
-    logger,
-};
+  logger,
+}
