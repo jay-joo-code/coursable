@@ -11,7 +11,7 @@ import store from 'src/slices/store'
 import history from 'src/util/history'
 import styled, { ThemeProvider } from 'styled-components'
 import Header from '../components/header'
-import './normalise.scss'
+import './normalise.less'
 import Routes from './Routes'
 import theme from './theme'
 
