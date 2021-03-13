@@ -45,5 +45,6 @@ module.exports = {
     'jsx-a11y/alt-text': 'off',
     semi: ['warn', 'never'],
     'unused-imports/no-unused-imports': 'error',
+    'no-empty-pattern': 'off',
   },
 }
