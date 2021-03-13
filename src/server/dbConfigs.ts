@@ -15,7 +15,6 @@ class Database {
             { useNewUrlParser: true, useUnifiedTopology: true }
           )
         const db: Connection = this._mongo.connection
-        console.log('Attempting DB connection', process.env)
         db.on('error', console.error.bind(console, 'connection error:'))
         db.once('open', () => {
           console.log('DB connected')
