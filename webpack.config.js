@@ -1,16 +1,16 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CopyPlugin = require('copy-webpack-plugin');
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const CopyPlugin = require('copy-webpack-plugin')
 
-const outputDirectory = 'dist';
+const outputDirectory = 'dist'
 
 module.exports = {
   entry: ['babel-polyfill', './src/client/index.tsx'],
   output: {
     path: path.join(__dirname, outputDirectory),
-    filename: './js/[name].bundle.js'
+    filename: './js/[name].bundle.js',
   },
   devtool: 'source-map',
   module: {
@@ -19,22 +19,22 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader'
-        }
+          loader: 'babel-loader',
+        },
       },
       {
         test: /\.tsx?$/,
         use: [
           {
-            loader: 'awesome-typescript-loader'
+            loader: 'awesome-typescript-loader',
           },
         ],
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
       {
         enforce: 'pre',
         test: /\.js$/,
-        loader: 'source-map-loader'
+        loader: 'source-map-loader',
       },
       {
         test: /\.less$/,
@@ -53,18 +53,19 @@ module.exports = {
             options: {
               strictMath: true,
               noIeCompat: true,
-            }
+            },
           },
-        ]
+        ],
       },
       {
         test: /\.(png|woff|woff2|eot|ttf|svg)$/,
-        loader: 'url-loader?limit=100000'
+        loader: 'url-loader?limit=100000',
       },
-    ]
+    ],
   },
   resolve: {
-    extensions: ['*', '.ts', '.tsx', '.js', '.jsx', '.json', '.less']
+    extensions: ['*', '.ts', '.tsx', '.js', '.jsx', '.json', '.less'],
+    // root: path.resolve('./src'),
   },
   devServer: {
     port: 3000,
@@ -74,9 +75,9 @@ module.exports = {
       '/api/**': {
         target: 'http://localhost:8050',
         secure: false,
-        changeOrigin: true
-      }
-    }
+        changeOrigin: true,
+      },
+    },
   },
   plugins: [
     new CleanWebpackPlugin([outputDirectory]),
@@ -91,6 +92,6 @@ module.exports = {
     }),
     new CopyPlugin([
       { from: './src/client/Assets', to: 'assets' },
-    ])
+    ]),
   ],
-};
+}

@@ -11,14 +11,17 @@
     "skipLibCheck": true,
     "lib": [
       "DOM"
-    ]
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "src/*": ["./src/*"]
+    }
   },
   "exclude": [
-    "./src/server "
+    "./src/server",
+    "node_modules"
   ],
   "include": [
-    "./src/client/*",
-    "./src/common/*",
-    "./src/client/types/**/*.d.ts"
+    "src/client"
   ]
 }

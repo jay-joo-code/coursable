@@ -1,0 +1,43 @@
+.DateRangePickerInput__withBorder {
+  border: 1px solid #C6C6C7;
+}
+
+.DateInput_input__focused {
+  border-color: #B31B1B;
+}
+
+.DayPickerKeyboardShortcuts_buttonReset {
+  display: none;
+}
+
+.CalendarMonth_caption {
+  padding-bottom: 50px !important;
+}
+
+.CalendarMonth_table {
+  td {
+    vertical-align: middle;
+  }
+}
+
+.CalendarDay__selected, 
+.CalendarDay__selected:active, 
+.CalendarDay__selected:hover {
+  background: #B31B1B;
+  border-color: #B31B1B;
+}
+
+.CalendarDay__selected_span,
+.CalendarDay__selected_span:active, 
+.CalendarDay__selected_span:hover {
+  background: #D98D8D;
+  border-color: #E2E2E3;
+}
+
+.DateInput_input {
+  text-align: center;
+  font-size: 1rem;
+  padding: 0;
+  padding-top: 10px;
+  padding-bottom: 8px;
+}

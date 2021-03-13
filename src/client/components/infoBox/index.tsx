@@ -1,0 +1,34 @@
+import React from 'react'
+import theme from 'src/app/theme'
+import styled from 'styled-components'
+import Icon from '../icon'
+import { Space } from '../layout'
+
+interface InfoBoxProps {
+  children: React.ReactNode
+  variant: 'warning'
+}
+
+const Container = styled.div`
+  display: flex;
+  width: 100%;
+  border-radius: 8px;
+  background: ${(props) => props.theme.warningLight};
+  color: ${(props) => props.theme.warning};
+  padding: 1rem;
+`
+
+const InfoBox = ({ variant, children }: InfoBoxProps) => {
+  return (
+    <Container variant={variant}>
+      <Icon
+        variant='warning'
+        fill={theme.warning}
+      />
+      <Space margin='0 .5rem' />
+      {children}
+    </Container>
+  )
+}
+
+export default InfoBox

@@ -1,9 +1,10 @@
 
 import bodyParser from 'body-parser'
 import dotenv from 'dotenv'
-import express, { Express, Request, Response, Router } from 'express'
+import express, { Express, Request, Response } from 'express'
 import DBConnect from './dbConfigs'
-import router from './route'
+import router from './router'
+import testScript from './testScript'
 
 // init env variables
 dotenv.config()
@@ -30,12 +31,9 @@ app.get('/', (req:Request, res:Response) => {
   res.sendFile('/dist/index.html')
 })
 
-// REGISTER ROUTES
-// all of the routes will be prefixed with /api
-const routes: Router[] = Object.values(router)
-app.use('/api', routes)
+app.use('/api', router)
 
-// START THE SERVER
-// =============================================================================
 app.listen(port)
 console.log(`App listening on ${port}`)
+
+testScript()
