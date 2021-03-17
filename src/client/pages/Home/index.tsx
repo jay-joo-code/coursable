@@ -35,9 +35,6 @@ const Illustration = styled(IllustHome)`
 `
 
 const Home = () => {
-  console.log('process.env.NODE_ENV :>> ', process.env.NODE_ENV)
-  console.log('process.env.DEV_SERVER_DOMAIN :>> ', process.env.DEV_SERVER_DOMAIN)
-
   const isMobile = useIsMobile()
   const { currentUser } = useCurrentUser()
   const { plans } = useCurrentUserPlans()
