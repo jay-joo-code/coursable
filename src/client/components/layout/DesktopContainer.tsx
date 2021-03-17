@@ -1,7 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
 
-export const Container = styled.div`
+interface DesktopContainerProps extends ContainerProps {
+  children: React.ReactNode
+}
+
+interface ContainerProps {
+  height?: string
+}
+
+export const Container = styled.div<ContainerProps>`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,11 +27,6 @@ export const Container = styled.div`
   // height
   height: ${(props) => props.height && props.height};
 `
-
-interface DesktopContainerProps {
-  children: React.ReactNode
-  height?: string
-}
 
 const DesktopContainer = ({ children, height }: DesktopContainerProps) => {
   return (

@@ -1,5 +1,4 @@
 import React from 'react'
-import useIsMobile from 'src/hooks/useIsMobile'
 import styled from 'styled-components'
 import Auth from '../auth'
 import { FlexRow } from '../layout'
@@ -15,8 +14,8 @@ const Header = () => {
     <Container>
       <DesktopContainer>
         <FlexRow
-          ac
-          jsb
+          alignCenter
+          justifySpaceBetween
           fullWidth
           style={{ padding: '.5rem' }}
         >

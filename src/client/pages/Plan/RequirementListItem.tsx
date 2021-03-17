@@ -24,7 +24,11 @@ const SVGOnHover = styled.div`
   opacity: 0;
 `
 
-const Container = styled(FlexRow)`
+interface ContainerProps {
+  isDragging: boolean
+}
+
+const Container = styled(FlexRow)<ContainerProps>`
   border: 1px solid ${(props) => props.theme.border};
   border-radius: 8px;
   padding: 1rem .5rem 1rem 1rem;
@@ -51,7 +55,11 @@ const Container = styled(FlexRow)`
   }
 `
 
-const SideWindowContainer = styled.div`
+interface SideWindowContainerProps {
+  isAssigned: boolean
+}
+
+const SideWindowContainer = styled.div<SideWindowContainerProps>`
   position: absolute;
   top: 0;
   z-index: 2;
@@ -134,7 +142,7 @@ const RequirementListItem = ({ requirementId, row }: RequirementListItemProps) =
               />
             </SVGOnHover>
           </Container>
-          <SideWindowContainer isAssigned={courseId}>
+          <SideWindowContainer isAssigned={courseId != null}>
             {isWindowOpen && (
               <SideWindow
                 setIsWindowOpen={setIsWindowOpen}

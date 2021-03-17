@@ -8,6 +8,6 @@
   "watch": [
     "src/server"
   ],
-  "exec": "tsc -p tsconfig.server.json && node server/",
+  "exec": "ts-node --transpile-only --files src/server/",
   "ext": "ts"
 }

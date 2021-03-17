@@ -1,6 +1,6 @@
 import { useParams, useLocation, useRouteMatch } from 'react-router-dom'
 import { useMemo } from 'react'
-import queryString from 'query-string'
+import { parse, stringify } from 'query-string'
 import history from 'src/util/history'
 
 export default function useRouter() {
@@ -9,12 +9,12 @@ export default function useRouter() {
   const match: any = useRouteMatch()
 
   const query: any = {
-    ...queryString.parse(location.search), // Convert string to object
+    ...parse(location.search), // Convert string to object
     ...params,
   }
 
   const setQuery = (newQuery) => {
-    const queryStr = queryString.stringify(newQuery)
+    const queryStr = stringify(newQuery)
     const newPath = `${location.pathname}?${queryStr}`
     history.push(newPath)
   }

@@ -43,7 +43,7 @@ const CreateRequirementForm = ({ }: CreateRequirementFormProps) => {
           error={errors.name?.message}
         />
         <Space margin='.5rem 0' />
-        <FlexRow je>
+        <FlexRow justifyEnd>
           <Button
             label='Create'
             type='submit'

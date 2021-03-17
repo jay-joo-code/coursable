@@ -1,10 +1,8 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
-import TestApp from './app/TestApp'
+import * as ReactDOM from 'react-dom'
+import App from './app/App'
 
 ReactDOM.render(
-  <React.StrictMode>
-    <TestApp />
-  </React.StrictMode>,
+  <App />,
   document.getElementById('root')
 )

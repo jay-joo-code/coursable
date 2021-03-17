@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import Textarea from 'react-textarea-autosize'
-import ReactSelect from 'react-select'
+import ReactSelect, { CommonProps } from 'react-select'
 
 export const InputContainer = styled.div`
   display: flex;
@@ -12,7 +12,12 @@ export const InputArea = styled.div`
   
 `
 
-export const StyledInput = styled.input`
+interface StyledInputProps {
+  fullWidth?: boolean
+  error?: boolean
+}
+
+export const StyledInput = styled.input<StyledInputProps>`
   flex: 1 0 auto;
   background: ${(props) => props.theme.bg};
   font-weight: 400;
@@ -199,7 +204,11 @@ export const StyledCheckbox = styled.label`
 
 export const TextAreaContainer = styled.div``
 
-export const StyledTextArea = styled(Textarea)`
+interface StyledTextAreaProps {
+  error?: boolean
+}
+
+export const StyledTextArea = styled(Textarea)<StyledTextAreaProps>`
   width: 100%;
   background: ${(props) => props.theme.bg};
   font-size: 1rem;
@@ -226,7 +235,7 @@ export const StyledTextArea = styled(Textarea)`
   }
 `
 
-export const StyledSelect = styled(ReactSelect)`
+export const StyledSelect = styled(ReactSelect)<CommonProps<any, false, any>>`
   & * {
     cursor: pointer !important;
     line-height: 1.5 !important;

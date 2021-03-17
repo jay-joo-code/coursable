@@ -37,8 +37,8 @@ const SelectPlanHome = () => {
 
   return (
     <FlexColumn
-      ac
-      jc
+      alignCenter
+      justifyCenter
     >
       <Text variant='h3'>We found multiple plans on your account</Text>
       <Space margin='.2rem 0' />

@@ -1,17 +1,10 @@
 import React from 'react'
-import { H1, H2, H3, H4, H5, H6, H7, P } from './styles'
+import { CoreTextProps, H1, H2, H3, H4, H5, H6, H7, P } from './styles'
 
-interface TextProps {
+interface TextProps extends CoreTextProps {
   variant: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'h7' | 'p'
   children: React.ReactNode
   style?: any
-  ellipsis?: boolean
-  nowrap?: boolean
-  color?: string
-  fontWeight?: number
-  maxWidth?: number
-  margin?: boolean
-  uppercase?: boolean
 }
 
 const Text = ({ variant, children, ...rest }: TextProps) => {

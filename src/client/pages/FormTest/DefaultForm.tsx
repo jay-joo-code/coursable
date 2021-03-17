@@ -127,7 +127,7 @@ const DefaultForm = () => {
           label='incrementorName'
           error={errors.incrementorName?.message}
         />
-        <FlexRow je>
+        <FlexRow justifyEnd>
           <Button
             label='Submit'
             type='submit'

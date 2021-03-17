@@ -1,41 +1,44 @@
 import React from 'react'
 import styled from 'styled-components'
-import { ReactComponent as ArticleIcon } from 'src/assets/icons/article.svg'
-import { ReactComponent as EditIcon } from 'src/assets/icons/edit.svg'
-import { ReactComponent as DoneIcon } from 'src/assets/icons/done.svg'
-import { ReactComponent as RightIcon } from 'src/assets/icons/right.svg'
-import { ReactComponent as DownIcon } from 'src/assets/icons/down.svg'
-import { ReactComponent as DeleteIcon } from 'src/assets/icons/delete.svg'
-import { ReactComponent as CloseIcon } from 'src/assets/icons/close.svg'
-import { ReactComponent as DownloadIcon } from 'src/assets/icons/download.svg'
-import { ReactComponent as BookmarkIcon } from 'src/assets/icons/bookmark.svg'
-import { ReactComponent as BookmarkFilledIcon } from 'src/assets/icons/bookmark-filled.svg'
-import { ReactComponent as ReportIcon } from 'src/assets/icons/report.svg'
-import { ReactComponent as ExchangeIcon } from 'src/assets/icons/exchange.svg'
-import { ReactComponent as AddIcon } from 'src/assets/icons/add.svg'
-import { ReactComponent as PeopleIcon } from 'src/assets/icons/people.svg'
-import { ReactComponent as UpIcon } from 'src/assets/icons/up.svg'
-import { ReactComponent as LeftIcon } from 'src/assets/icons/left.svg'
-import { ReactComponent as PersonIcon } from 'src/assets/icons/person.svg'
-import { ReactComponent as MenuIcon } from 'src/assets/icons/menu.svg'
-import { ReactComponent as LockIcon } from 'src/assets/icons/lock.svg'
-import { ReactComponent as PlaceIcon } from 'src/assets/icons/place.svg'
-import { ReactComponent as AddCircleIcon } from 'src/assets/icons/add-circle.svg'
-import { ReactComponent as RemoveCircleIcon } from 'src/assets/icons/remove-circle.svg'
-import { ReactComponent as WarningIcon } from 'src/assets/icons/warning.svg'
-import { ReactComponent as MoreHoriIcon } from 'src/assets/icons/more-hori.svg'
-import { ReactComponent as MoreVertIcon } from 'src/assets/icons/more-vert.svg'
+import ArticleIcon from 'src/assets/icons/article.svg'
+import EditIcon from 'src/assets/icons/edit.svg'
+import DoneIcon from 'src/assets/icons/done.svg'
+import RightIcon from 'src/assets/icons/right.svg'
+import DownIcon from 'src/assets/icons/down.svg'
+import DeleteIcon from 'src/assets/icons/delete.svg'
+import CloseIcon from 'src/assets/icons/close.svg'
+import DownloadIcon from 'src/assets/icons/download.svg'
+import BookmarkIcon from 'src/assets/icons/bookmark.svg'
+import BookmarkFilledIcon from 'src/assets/icons/bookmark-filled.svg'
+import ReportIcon from 'src/assets/icons/report.svg'
+import ExchangeIcon from 'src/assets/icons/exchange.svg'
+import AddIcon from 'src/assets/icons/add.svg'
+import PeopleIcon from 'src/assets/icons/people.svg'
+import UpIcon from 'src/assets/icons/up.svg'
+import LeftIcon from 'src/assets/icons/left.svg'
+import PersonIcon from 'src/assets/icons/person.svg'
+import MenuIcon from 'src/assets/icons/menu.svg'
+import LockIcon from 'src/assets/icons/lock.svg'
+import PlaceIcon from 'src/assets/icons/place.svg'
+import AddCircleIcon from 'src/assets/icons/add-circle.svg'
+import RemoveCircleIcon from 'src/assets/icons/remove-circle.svg'
+import WarningIcon from 'src/assets/icons/warning.svg'
+import MoreHoriIcon from 'src/assets/icons/more-hori.svg'
+import MoreVertIcon from 'src/assets/icons/more-vert.svg'
 
-interface IconProps {
+interface IconProps extends IconContainerProps {
   variant: string
+  onClick?: () => void
+}
+
+interface IconContainerProps {
   fill?: string
   size?: string
-  onClick?: () => void
   pointer?: boolean
   interactiveHover?: boolean
 }
 
-const IconContainer = styled.div`
+const IconContainer = styled.div<IconContainerProps>`
   height: 2rem;
   width: 2rem;
   flex-shrink: 0;

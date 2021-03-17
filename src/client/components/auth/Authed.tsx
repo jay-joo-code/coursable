@@ -1,17 +1,16 @@
+import { Dropdown, Menu } from 'antd'
+import moment from 'moment'
 import React from 'react'
+import { Link } from 'react-router-dom'
+import { useCurrentUserPlans } from 'src/api/user'
+import theme from 'src/app/theme'
+import useCurrentPsid from 'src/hooks/useCurrentPsid'
+import { IPlanDoc } from 'src/types/plan'
 import styled from 'styled-components'
 import Avatar from '../avatar'
 import Icon from '../icon'
 import { FlexRow, Space } from '../layout'
-import { Menu, Dropdown } from 'antd'
-import { Link } from 'react-router-dom'
-import theme from 'src/app/theme'
-import { useCurrentUserPlans } from 'src/api/user'
-import { IPlanDoc } from 'src/types/plan'
-import moment from 'moment'
 import Text from '../text'
-import useRouter from 'src/hooks/useRouter'
-import useCurrentPsid from 'src/hooks/useCurrentPsid'
 
 interface AuthedProps {
   userPhotoSrc: string
@@ -28,7 +27,11 @@ const StyledSubMenu = styled(Menu.SubMenu)`
   }
 `
 
-const StyledMenuItem = styled(Menu.Item)`
+interface StyledMenuItemProps {
+  highlight: boolean
+}
+
+const StyledMenuItem = styled(Menu.Item)<StyledMenuItemProps>`
   // highlight
   background: ${(props) => props.highlight && props.theme.brandBg};
 `

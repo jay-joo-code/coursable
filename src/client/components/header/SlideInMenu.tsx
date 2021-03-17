@@ -7,7 +7,11 @@ import Icon from '../icon'
 import useNavs from 'src/hooks/useNavs'
 import { Link } from 'react-router-dom'
 
-const Container = styled.div`
+interface ContainerProps {
+  isOpen: boolean
+}
+
+const Container = styled.div<ContainerProps>`
   width: 240px;
   right: -250px;
   position: fixed;
@@ -45,7 +49,7 @@ const SlideInMenu = ({ isOpen, setIsOpen }: SlideInMenuProps) => {
   return (
     <OutsideClickListener onOutsideClick={() => setIsOpen(false)}>
       <Container isOpen={isOpen}>
-        <TopRow jsb>
+        <TopRow justifySpaceBetween>
           <div />
           <Icon
             variant='close'

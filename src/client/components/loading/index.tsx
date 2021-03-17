@@ -1,6 +1,10 @@
 import styled from 'styled-components'
 
-const Loading = styled.div`
+interface LoadingProps {
+  isHidden?: boolean
+}
+
+const Loading = styled.div<LoadingProps>`
   border-top: 3px solid ${(props) => props.theme.borderDark};
   border-right: 3px solid ${(props) => props.theme.borderDark};
   border-bottom: 3px solid ${(props) => props.theme.borderDark};

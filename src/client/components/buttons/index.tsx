@@ -17,7 +17,15 @@ export interface ButtonProps {
   type?: 'submit'
 }
 
-const StyledButton = styled.button`
+interface StyledButtonProps {
+  bordered?: boolean
+  text?: boolean
+  isLoading?: boolean
+  icon?: string
+  isIconRightSide?: boolean
+}
+
+const StyledButton = styled.button<StyledButtonProps>`
   background: ${(props) => props.theme.brand};
   color: ${(props) => props.theme.bg};
   padding: .5rem 1rem;

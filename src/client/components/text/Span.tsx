@@ -1,14 +1,17 @@
 import React from 'react'
 import styled from 'styled-components'
 
-interface SpanProps {
+interface SpanProps extends StyledSpanProps {
   children: React.ReactNode
+}
+
+interface StyledSpanProps {
   fontWeight?: number
   color?: string
   underline?: boolean
 }
 
-const StyledSpan = styled.span`
+const StyledSpan = styled.span<StyledSpanProps>`
   // fontWeight
   font-weight: ${(props) => props.fontWeight && props.fontWeight};
 

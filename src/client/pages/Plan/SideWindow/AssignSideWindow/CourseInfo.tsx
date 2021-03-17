@@ -20,7 +20,11 @@ const Container = styled(FlexColumn)`
   align-items: flex-start;
 `
 
-const Description = styled(Text)`
+interface DescriptionProps {
+  isExpanded: boolean
+}
+
+const Description = styled(Text)<DescriptionProps>`
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
@@ -133,7 +137,7 @@ const CourseInfo = ({ requirement, assignedCourse }: CourseInfoProps) => {
         <>
           <Space margin='1.5rem 0' />
           <FlexRow
-            je
+            justifyEnd
             fullWidth
           >
             <Button

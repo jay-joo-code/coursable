@@ -12,7 +12,7 @@ const Container = styled.div`
 const TestApp = ({ }: TestAppProps) => {
   return (
     <Container>
-      Test App
+      Test App text change
     </Container>
   )
 }

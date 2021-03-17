@@ -4,10 +4,9 @@ import { useMajors } from 'src/api/major'
 import { useGeneratePlanByMajor } from 'src/api/plan'
 import { useCurrentUser } from 'src/api/user'
 import theme from 'src/app/theme'
-import { ReactComponent as EngineeringIconRaw } from 'src/assets/svgs/departments/engineering.svg'
+import EngineeringIconRaw from 'src/assets/svgs/departments/engineering.svg'
 import { FlexColumn, FlexRow, Space } from 'src/components/layout'
 import Loading from 'src/components/loading'
-import Pill from 'src/components/pill'
 import Text from 'src/components/text'
 import useRouter from 'src/hooks/useRouter'
 import { setPsid } from 'src/slices/plan'
@@ -48,7 +47,11 @@ const MajorList = styled.div`
   }
 `
 
-const MajorListItem = styled(FlexRow)`
+interface MajorListItemProps {
+  isComingSoon: boolean
+}
+
+const MajorListItem = styled(FlexRow)<MajorListItemProps>`
   padding: .5rem 1rem;
   align-items: center;
   justify-content: space-between;
@@ -92,7 +95,7 @@ const MajorSelector = () => {
   if (!majors) return <Loading />
 
   return (
-    <FlexColumn ac>
+    <FlexColumn alignCenter>
       <Container>
         <DepartmentList>
           <DepartmentListItem>

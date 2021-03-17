@@ -1,10 +1,9 @@
 import React from 'react'
-import styled from 'styled-components'
-import MajorSelector from './MajorSelector'
-import { ReactComponent as IllustHome } from 'src/assets/illustrations/illust-home.svg'
+import IllustHome from 'src/assets/illustrations/illust-home.svg'
 import { FlexColumn, FlexRow, Space } from 'src/components/layout'
 import Text from 'src/components/text'
-import theme from 'src/app/theme'
+import styled from 'styled-components'
+import MajorSelector from './MajorSelector'
 
 const Container = styled(FlexRow)`
 
@@ -33,8 +32,8 @@ const New = () => {
         <Illustration />
       </Left>
       <Right
-        ac
-        jc
+        alignCenter
+        justifyCenter
       >
         <Text variant='h3'>{'What\'s your major?'}</Text>
         <Space margin='1rem 0' />

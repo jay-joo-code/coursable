@@ -21,7 +21,11 @@ interface RequirementListProps {
 const Wrapper = styled.div`
 `
 
-const Container = styled.div`
+interface ContainerProps {
+  isDraggingOver: boolean
+}
+
+const Container = styled.div<ContainerProps>`
   padding: 1rem;
   width: 240px;
   background: ${(props) => props.theme.grey[100]};
@@ -72,7 +76,7 @@ const RequirementList = ({ semester, semesterNumber }: RequirementListProps) => 
             isDraggingOver={snapshot.isDraggingOver}
           >
             <FlexRow
-              jsb
+              justifySpaceBetween
               alignStart
             >
               <div>
@@ -129,8 +133,8 @@ const RequirementList = ({ semester, semesterNumber }: RequirementListProps) => 
             >All requirements within this semester will be permanently deleted</Text>
             <Space margin='1rem 0' />
             <FlexRow
-              ac
-              je
+              alignCenter
+              justifyEnd
             >
               <Button
                 text

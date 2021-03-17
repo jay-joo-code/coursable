@@ -5,11 +5,6 @@
   "compilerOptions": {
     "module": "commonjs",
     "target": "es2019",
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "allowSyntheticDefaultImports": true,
     "outDir": "./server",
     "moduleResolution": "node",
     "sourceMap": true,
@@ -17,12 +12,21 @@
     "paths": {
       "src/*": [
         "./src/*"
-      ],
+      ]
     },
+
+    // configurations
+    "strict": true,
+    "esModuleInterop": true,
+    "noImplicitAny": false,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "allowSyntheticDefaultImports": true
   },
   "compileOnSave": true,
   "exclude": [
-    "./src/client"
+    "./src/client",
+    "node_modules"
   ],
   "include": [
     "./src/server"

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useCurrentUser, useCurrentUserPlans } from 'src/api/user'
-import { ReactComponent as IllustHome } from 'src/assets/illustrations/illust-home.svg'
+import IllustHome from 'src/assets/illustrations/illust-home.svg'
 import { FlexColumn, FlexRow, Space } from 'src/components/layout'
 import Text from 'src/components/text'
 import useIsMobile from 'src/hooks/useIsMobile'
@@ -35,6 +35,9 @@ const Illustration = styled(IllustHome)`
 `
 
 const Home = () => {
+  console.log('process.env.NODE_ENV :>> ', process.env.NODE_ENV)
+  console.log('process.env.DEV_SERVER_DOMAIN :>> ', process.env.DEV_SERVER_DOMAIN)
+
   const isMobile = useIsMobile()
   const { currentUser } = useCurrentUser()
   const { plans } = useCurrentUserPlans()
@@ -61,7 +64,7 @@ const Home = () => {
   if (isMobile) {
     return (
 
-    <FlexColumn ac>
+    <FlexColumn alignCenter>
       <Space margin='.5rem 0' />
       <Text
         variant='p'

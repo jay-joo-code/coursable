@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
+const Dotenv = require('dotenv-webpack')
 
 const outputDirectory = 'dist'
 
@@ -37,6 +38,11 @@ module.exports = {
         loader: 'source-map-loader',
       },
       {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+      },
+
+      {
         test: /\.less$/,
         use: [
           { loader: 'style-loader' },
@@ -58,8 +64,26 @@ module.exports = {
         ],
       },
       {
-        test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+        test: /\.(png|woff|woff2|eot|ttf)$/,
         loader: 'url-loader?limit=100000',
+      },
+      {
+        test: /\.svg$/,
+        use: [
+          {
+            loader: 'babel-loader',
+          },
+          {
+            loader: 'react-svg-loader',
+            options: {
+              svgo: {
+                plugins: [{ removeTitle: false }],
+                floatPrecision: 2,
+              },
+              jsx: true,
+            },
+          },
+        ],
       },
     ],
   },
@@ -71,17 +95,19 @@ module.exports = {
   },
   devServer: {
     port: 3002,
-    open: true,
+    open: false,
     hot: true,
+    historyApiFallback: true,
     proxy: {
-      '/api/**': {
-        target: 'http://localhost:8050',
+      '/api': {
+        target: 'http://localhost:5000',
         secure: false,
         changeOrigin: true,
       },
     },
   },
   plugins: [
+    new Dotenv(),
     new CleanWebpackPlugin([outputDirectory]),
     new HtmlWebpackPlugin({
       template: './public/index.html',

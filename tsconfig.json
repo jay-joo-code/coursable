@@ -20,14 +20,15 @@
     "skipLibCheck": true,
     "sourceMap": true,
     "noImplicitAny": false,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true
   },
-  "exclude": ["node_modules"],
-  // "exclude": [
-  //   "./src/server"
-  // ],
-  // "include": [
-  //   "./src/client/**/*",
-  //   "./src/client/types/**/*.d.ts"
-  // ]
+  "exclude": [
+    "./src/server",
+    "node_modules"
+  ],
+  "include": [
+    "./src/client/**/*",
+    "./src/client/types/**/*.d.ts"
+  ]
 }

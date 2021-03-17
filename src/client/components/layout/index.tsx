@@ -1,25 +1,38 @@
 import styled from 'styled-components'
 
-const FlexElement = styled.div`
+interface FlexElementProps {
+  justifySpaceBetween?: boolean
+  justifyCenter?: boolean
+  justifyEnd?: boolean
+  alignStart?: boolean
+  alignCenter?: boolean
+  alignEnd?: boolean
+  flexDirection?: string
+  wrap?: boolean
+  fullWidth?: boolean
+  fullHeight?: boolean
+}
+
+const FlexElement = styled.div<FlexElementProps>`
   display: flex;
 
   // justifySpaceBetween
-  justify-content: ${(props) => (props.jsb || props.justifySpaceBetween) && 'space-between'};
+  justify-content: ${(props) => props.justifySpaceBetween && 'space-between'};
 
   // justifyCenter
-  justify-content: ${(props) => (props.jc || props.justifyCenter) && 'center'};
+  justify-content: ${(props) => props.justifyCenter && 'center'};
 
   // justifyEnd
-  justify-content: ${(props) => (props.je || props.justifyEnd) && 'flex-end'};
+  justify-content: ${(props) => props.justifyEnd && 'flex-end'};
 
   // alignStart
-  align-items: ${(props) => (props.as || props.alignStart) && 'flex-start'};
+  align-items: ${(props) => props.alignStart && 'flex-start'};
 
   // alignCenter
-  align-items: ${(props) => (props.ac || props.alignCenter) && 'center'};
+  align-items: ${(props) => props.alignCenter && 'center'};
 
   // alignEnd
-  align-items: ${(props) => (props.ae || props.alignEnd) && 'flex-end'};
+  align-items: ${(props) => props.alignEnd && 'flex-end'};
 
   // flexDirection
   flex-direction: ${(props) => props.flexDirection && props.flexDirection};
@@ -41,7 +54,12 @@ export const FlexColumn = styled(FlexElement)`
 export const FlexRow = styled(FlexElement)`
 `
 
-export const Space = styled.div`
+interface SpaceProps {
+  margin?: string
+  padding?: string
+}
+
+export const Space = styled.div<SpaceProps>`
   margin: ${(props) => props.margin && props.margin};
   padding: ${(props) => props.padding && props.padding};
 `

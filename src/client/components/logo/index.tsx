@@ -1,16 +1,20 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import theme from 'src/app/theme'
-import { ReactComponent as LogoSVGRaw } from 'src/assets/svgs/logo.svg'
+import LogoSVGRaw from 'src/assets/svgs/logo.svg'
 import styled from 'styled-components'
-
-const LogoSVG = styled(LogoSVGRaw)`
-  // fill
-  fill: ${(props) => props.fill && props.fill};
-`
 interface LogoProps {
   variant: 'brand' | 'black'
 }
+
+interface LogoSVGProps {
+  fill?: string
+}
+
+const LogoSVG = styled(LogoSVGRaw)<LogoSVGProps>`
+  // fill
+  fill: ${(props) => props.fill && props.fill};
+`
 
 const Logo = ({ variant }: LogoProps) => {
   const variantToFill = {
@@ -21,7 +25,8 @@ const Logo = ({ variant }: LogoProps) => {
 
   return (
     <Link to='/'>
-      <LogoSVG fill={fill} />
+      logo
+      {/* <LogoSVG fill={fill} /> */}
     </Link>
   )
 }

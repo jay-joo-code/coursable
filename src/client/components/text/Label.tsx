@@ -1,7 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const StyledLabel = styled.label`
+interface StyledLabelProps {
+  disabled?: boolean
+  noMargin?: boolean
+}
+
+const StyledLabel = styled.label<StyledLabelProps>`
   font-weight: 500;
   font-size: .9rem;
   letter-spacing: -0.4px;

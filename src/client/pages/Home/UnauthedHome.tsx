@@ -23,8 +23,8 @@ const UnauthedHome = () => {
 
   return (
     <FlexColumn
-      ac
-      jc
+      alignCenter
+      justifyCenter
     >
       <Text variant='h3'>Welcome back!</Text>
       <Space margin='.2rem 0' />

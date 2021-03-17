@@ -1,5 +1,4 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
 import { useUpdateRequirementById } from 'src/api/requirement'
 import theme from 'src/app/theme'
 import Text from 'src/components/text'

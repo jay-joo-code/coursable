@@ -4,12 +4,18 @@ import styled from 'styled-components'
 import Icon from '../icon'
 import { Space } from '../layout'
 
+type IVariant = 'warning'
+
 interface InfoBoxProps {
   children: React.ReactNode
-  variant: 'warning'
+  variant: IVariant
 }
 
-const Container = styled.div`
+interface ContainerProps {
+  variant: IVariant
+}
+
+const Container = styled.div<ContainerProps>`
   display: flex;
   width: 100%;
   border-radius: 8px;

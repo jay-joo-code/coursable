@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { ToastContainer, cssTransition } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import './ToastStyles.scss'
+import './ToastStyles.less'
 
 const ZoomCustom = cssTransition({
   enter: 'zoomIn',

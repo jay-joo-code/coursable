@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import theme from 'src/app/theme'
 import googleSignin from 'src/assets/services/google-signin@2x.png'
@@ -8,15 +7,14 @@ import { HoriBar } from 'src/components/horiBar'
 import { FlexColumn, Space } from 'src/components/layout'
 import Text from 'src/components/text'
 import useRouter from 'src/hooks/useRouter'
-import { RootState } from 'src/types/redux'
 
 const NoPlansHome = () => {
   const router = useRouter()
 
   return (
     <FlexColumn
-      ac
-      jc
+      alignCenter
+      justifyCenter
     >
       <Text variant='h3'>There are no plans on this account</Text>
       <Space margin='.2rem 0' />

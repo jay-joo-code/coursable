@@ -24,8 +24,6 @@ const customStyles = {
   },
 }
 
-ReactModal.setAppElement('#root')
-
 const TopRow = styled(FlexRow)`
   padding: .5rem 1rem;
   border-bottom: 1px solid ${(props) => props.theme.border};
@@ -51,6 +49,10 @@ interface ModalProps {
 
 const Modal = (props: ModalProps) => {
   useEffect(() => {
+    ReactModal.setAppElement('#root')
+  }, [])
+
+  useEffect(() => {
     if (props.isOpen) {
       document.body.style.overflow = 'hidden'
     } else {
@@ -66,6 +68,7 @@ const Modal = (props: ModalProps) => {
       onRequestClose={props.onRequestClose}
       onAfterOpen={props.onAfterOpen}
       style={customStyles}
+      ariaHideApp={false}
     >
       {!props.isHideHeader && (
         <TopRow

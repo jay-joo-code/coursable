@@ -1,6 +1,16 @@
 import styled from 'styled-components'
 
-const CoreText = styled.p`
+export interface CoreTextProps {
+  ellipsis?: boolean
+  nowrap?: boolean
+  color?: string
+  fontWeight?: number
+  maxWidth?: number
+  margin?: string
+  uppercase?: boolean
+}
+
+const CoreText = styled.p<CoreTextProps>`
   color: ${(props) => props.theme.text};
   white-space: pre-line;
   word-break: break-word;

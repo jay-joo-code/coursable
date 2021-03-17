@@ -1,5 +1,5 @@
 import moment from 'moment'
-import React, { useState, InputHTMLAttributes, forwardRef, ReactNode } from 'react'
+import React, { useState, InputHTMLAttributes, forwardRef } from 'react'
 
 import {
   DateRangePicker as DateRangePickerAirbnb, DayPickerSingleDateController, isInclusivelyAfterDay
@@ -13,7 +13,7 @@ import Icon from '../icon'
 import { FlexRow } from '../layout'
 import Text from '../text'
 import Label from '../text/Label'
-import './datepicker.scss'
+import './datepicker.less'
 import {
   CheckboxContainer,
   InputArea,
@@ -54,7 +54,7 @@ const ErrorMsg = (props: { error?: string }) => {
   )
 }
 
-export const Input = forwardRef((props: InputProps, ref) => {
+export const Input = forwardRef<HTMLInputElement, InputProps>((props: InputProps, ref) => {
   const handleKeyDown = (e) => {
     if (e.key === 'Enter' && props.onEnterPress) {
       props.onEnterPress()
@@ -66,9 +66,10 @@ export const Input = forwardRef((props: InputProps, ref) => {
       <Label {...props}>{props.label}</Label>
       <InputArea>
         <StyledInput
-          onKeyDown={handleKeyDown}
-          ref={ref}
           {...props}
+          ref={ref}
+          onKeyDown={handleKeyDown}
+          error={props.error != null}
         />
       </InputArea>
       <ErrorMsg error={props.error} />
@@ -110,19 +111,32 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>((props, ref)
   )
 })
 
-export interface TextAreaProps extends InputProps {
+export interface TextAreaProps extends InputHTMLAttributes<HTMLTextAreaElement> {
+  name?: string
+  label?: string
+  value?: any
+  placeholder?: string
+  onEnterPress?: () => void
+  autoFocus?: boolean
+  disabled?: boolean
+  width?: number
+  fullWidth?: boolean
+  error?: string
+  type?: string
+  style?: any
   maxRows?: number
   minRows?: number
 }
 
-export const TextArea = forwardRef((props: TextAreaProps, ref) => {
+export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>((props, ref) => {
   return (
     <TextAreaContainer>
       <Label {...props}>{props.label}</Label>
       <div>
         <StyledTextArea
-          ref={ref}
           {...props}
+          ref={ref}
+          error={props.error != null}
         />
       </div>
       <ErrorMsg error={props.error} />
@@ -410,8 +424,8 @@ export const Incrementor = ({
 
   return (
     <FlexRow
-      ac
-      jsb
+      alignCenter
+
       fullWidth
     >
       <Text
@@ -420,7 +434,7 @@ export const Incrementor = ({
       >
         {label}
       </Text>
-      <FlexRow ac>
+      <FlexRow alignCenter>
         <Icon
           variant='remove-circle'
           fill={theme.brand}
@@ -429,8 +443,8 @@ export const Incrementor = ({
           onClick={handleMinusClick}
         />
         <FlexRow
-          jc
-          ac
+          justifyCenter
+          alignCenter
           style={{ width: '40px' }}
         >
           <Text variant='h4'>{value}</Text>

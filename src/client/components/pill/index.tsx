@@ -1,14 +1,17 @@
 import React from 'react'
 import styled from 'styled-components'
 
-interface PillProps {
+interface PillProps extends ContainerProps {
   label: string
   onClick?: () => void
+}
+
+interface ContainerProps {
   background?: string
   color?: string
 }
 
-const Container = styled.div`
+const Container = styled.div<ContainerProps>`
   border-radius: 20px;
   padding: .3rem .5rem;
   background: ${(props) => props.theme.brand300};
