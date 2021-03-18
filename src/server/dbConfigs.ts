@@ -8,10 +8,11 @@ class Database {
     }
 
     dbConnection() {
-      if (process.env.DB_DEV) {
+      const url = process.env.DB_PROD || process.env.DB_DEV
+      if (url) {
         this._mongo
           .connect(
-            process.env.DB_DEV,
+            url,
             { useNewUrlParser: true, useUnifiedTopology: true }
           )
         const db: Connection = this._mongo.connection
