@@ -4,7 +4,11 @@ import dotenv from 'dotenv'
 import User from '../models/User'
 import path from 'path'
 
+// dev dotenv path
 dotenv.config({ path: path.resolve(__dirname, '../../../.env') })
+
+// prod dotenv path
+dotenv.config({ path: path.resolve(__dirname, '../../.env') })
 
 passport.use(new GoogleStrategy({
   clientID: process.env.ID_GOOGLE,

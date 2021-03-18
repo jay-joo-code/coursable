@@ -2,9 +2,9 @@ import express from 'express'
 import User from '../../models/User'
 import jwt from 'jsonwebtoken'
 import passportGoogle from '../../auth/google'
-import passportKakao from '../../auth/kakao'
-import passportNaver from '../../auth/naver'
-import passportFacebook from '../../auth/facebook'
+// import passportKakao from '../../auth/kakao'
+// import passportNaver from '../../auth/naver'
+// import passportFacebook from '../../auth/facebook'
 
 const authRouter = express.Router()
 
@@ -76,52 +76,52 @@ authRouter.get(
   }
 )
 
-/* KAKAO */
-authRouter.get('/kakao', passportKakao.authenticate('kakao'))
+// /* KAKAO */
+// authRouter.get('/kakao', passportKakao.authenticate('kakao'))
 
-authRouter.get(
-  '/kakao/callback',
-  passportKakao.authenticate('kakao', {
-    failureRedirect: '/kakao-failure-redirect',
-    session: false,
-  }),
-  (req, res) => {
-    // @ts-ignore
-    const token = jwt.sign({ _id: req.user._id }, process.env.AUTH_SECRET)
-    res.redirect(`${process.env.DEV_CLIENT_DOMAIN}/auth/callback?token=${token}`)
-  }
-)
+// authRouter.get(
+//   '/kakao/callback',
+//   passportKakao.authenticate('kakao', {
+//     failureRedirect: '/kakao-failure-redirect',
+//     session: false,
+//   }),
+//   (req, res) => {
+//     // @ts-ignore
+//     const token = jwt.sign({ _id: req.user._id }, process.env.AUTH_SECRET)
+//     res.redirect(`${process.env.DEV_CLIENT_DOMAIN}/auth/callback?token=${token}`)
+//   }
+// )
 
-/* NAVER */
-authRouter.get('/naver', passportNaver.authenticate('naver'))
+// /* NAVER */
+// authRouter.get('/naver', passportNaver.authenticate('naver'))
 
-authRouter.get(
-  '/naver/callback',
-  passportNaver.authenticate('naver', {
-    failureRedirect: '/naver-failure-redirect',
-    session: false,
-  }),
-  (req, res) => {
-    // @ts-ignore
-    const token = jwt.sign({ _id: req.user._id }, process.env.AUTH_SECRET)
-    res.redirect(`${process.env.DEV_CLIENT_DOMAIN}/auth/callback?token=${token}`)
-  }
-)
+// authRouter.get(
+//   '/naver/callback',
+//   passportNaver.authenticate('naver', {
+//     failureRedirect: '/naver-failure-redirect',
+//     session: false,
+//   }),
+//   (req, res) => {
+//     // @ts-ignore
+//     const token = jwt.sign({ _id: req.user._id }, process.env.AUTH_SECRET)
+//     res.redirect(`${process.env.DEV_CLIENT_DOMAIN}/auth/callback?token=${token}`)
+//   }
+// )
 
-/* FACEBOOK */
-authRouter.get('/facebook', passportFacebook.authenticate('facebook'))
+// /* FACEBOOK */
+// authRouter.get('/facebook', passportFacebook.authenticate('facebook'))
 
-authRouter.get(
-  '/facebook/callback',
-  passportFacebook.authenticate('facebook', {
-    failureRedirect: '/facebook-failure-redirect',
-    session: false,
-  }),
-  (req, res) => {
-    // @ts-ignore
-    const token = jwt.sign({ _id: req.user._id }, process.env.AUTH_SECRET)
-    res.redirect(`${process.env.DEV_CLIENT_DOMAIN}/auth/callback?token=${token}`)
-  }
-)
+// authRouter.get(
+//   '/facebook/callback',
+//   passportFacebook.authenticate('facebook', {
+//     failureRedirect: '/facebook-failure-redirect',
+//     session: false,
+//   }),
+//   (req, res) => {
+//     // @ts-ignore
+//     const token = jwt.sign({ _id: req.user._id }, process.env.AUTH_SECRET)
+//     res.redirect(`${process.env.DEV_CLIENT_DOMAIN}/auth/callback?token=${token}`)
+//   }
+// )
 
 export default authRouter
