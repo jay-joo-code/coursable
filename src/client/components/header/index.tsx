@@ -19,7 +19,7 @@ const Header = () => {
           fullWidth
           style={{ padding: '.5rem' }}
         >
-          <Logo variant='brand' />
+          <Logo />
           <Auth />
         </FlexRow>
       </DesktopContainer>
