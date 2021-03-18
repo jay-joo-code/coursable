@@ -2,8 +2,9 @@ import passport from 'passport'
 import { Strategy as FacebookStrategy } from 'passport-facebook'
 import dotenv from 'dotenv'
 import User from '../models/User'
+import path from 'path'
 
-dotenv.config({ path: `${__dirname}/../../.env` })
+dotenv.config({ path: path.resolve(__dirname, '../../../.env') })
 
 /*
 https://developers.facebook.com/apps/
