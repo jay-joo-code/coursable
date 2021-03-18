@@ -11,6 +11,7 @@ module.exports = {
   entry: ['babel-polyfill', './src/client/index.tsx'],
   output: {
     path: path.join(__dirname, outputDirectory),
+    publicPath: '/',
     filename: './js/[name].bundle.js',
   },
   devtool: 'source-map',
@@ -18,13 +19,14 @@ module.exports = {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
+        include: path.resolve(__dirname, 'src/client'),
         use: {
           loader: 'babel-loader',
         },
       },
       {
         test: /\.tsx?$/,
+        include: path.resolve(__dirname, 'src/client'),
         use: [
           {
             loader: 'awesome-typescript-loader',
@@ -35,15 +37,16 @@ module.exports = {
       {
         enforce: 'pre',
         test: /\.js$/,
+        include: path.resolve(__dirname, 'src/client'),
         loader: 'source-map-loader',
       },
       {
         test: /\.css$/i,
         use: ['style-loader', 'css-loader'],
       },
-
       {
         test: /\.less$/,
+        include: path.resolve(__dirname, 'src/client'),
         use: [
           { loader: 'style-loader' },
           {
@@ -65,10 +68,12 @@ module.exports = {
       },
       {
         test: /\.(png|woff|woff2|eot|ttf)$/,
+        include: path.resolve(__dirname, 'src/client'),
         loader: 'url-loader?limit=100000',
       },
       {
         test: /\.svg$/,
+        include: path.resolve(__dirname, 'src/client'),
         use: [
           {
             loader: 'babel-loader',
