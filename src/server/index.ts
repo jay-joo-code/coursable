@@ -56,15 +56,16 @@ passport.use(new JwtStrategy(opts, (jwtPayload, done) => {
 // database
 DBConnect.dbConnection()
 
-// prod
-app.use(express.static('dist'))
-app.get('/', (req:Request, res:Response) => {
-  console.log('sending index.html')
-  res.sendFile('/dist/index.html')
-})
-
 // routing
 app.use('/api', router)
+
+// prod
+if (process.env.NODE_ENV !== 'development') {
+  app.use(express.static('dist'))
+  app.get('*', (req: Request, res: Response) => {
+    res.sendFile('/dist/index.html')
+  })
+}
 
 // listen at port
 const port: number = Number(process.env.PORT) || 5000
