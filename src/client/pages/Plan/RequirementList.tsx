@@ -1,4 +1,5 @@
-import { Dropdown, Menu } from 'antd'
+import Dropdown from 'antd/lib/dropdown'
+import Menu from 'antd/lib/menu'
 import React, { memo, useState } from 'react'
 import { Droppable } from 'react-beautiful-dnd'
 import { useDeleteSemester } from 'src/api/plan'

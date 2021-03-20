@@ -5,6 +5,7 @@
   "main": "server/index.js",
   "scripts": {
     "build": "webpack --mode production && npx tsc -p tsconfig.server.json",
+    "build:client": "webpack --mode production",
     "start": "node server",
     "dev": "concurrently \"npm run server-dev\" \"npm run client\"",
     "client": "webpack-dev-server --mode development --devtool inline-source-map --hot --showConfig",
@@ -101,6 +102,8 @@
     "awesome-typescript-loader": "^5.2.1",
     "babel-eslint": "^10.0.0",
     "babel-loader": "^8.0.0",
+    "babel-plugin-import": "^1.13.3",
+    "babel-plugin-transform-imports": "^2.0.0",
     "clean-webpack-plugin": "^1.0.0",
     "concurrently": "^6.0.0",
     "copy-webpack-plugin": "^5.0.3",

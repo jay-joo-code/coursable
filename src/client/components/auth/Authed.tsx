@@ -1,4 +1,5 @@
-import { Dropdown, Menu } from 'antd'
+import Dropdown from 'antd/lib/dropdown'
+import Menu from 'antd/lib/menu'
 import moment from 'moment'
 import React from 'react'
 import { Link } from 'react-router-dom'

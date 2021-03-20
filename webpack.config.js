@@ -4,8 +4,29 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 const Dotenv = require('dotenv-webpack')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 const outputDirectory = 'dist'
+
+const plugins = [
+  new Dotenv(),
+  new CleanWebpackPlugin([outputDirectory]),
+  new HtmlWebpackPlugin({
+    template: './public/index.html',
+    favicon: './public/favicon.ico',
+    title: 'Coursable',
+  }),
+  new MiniCssExtractPlugin({
+    filename: './css/[name].css',
+    chunkFilename: './css/[id].css',
+  }),
+  new CopyPlugin([
+    { from: './src/client/Assets', to: 'assets' },
+  ]),
+  new BundleAnalyzerPlugin({
+    analyzerMode: 'static',
+  }),
+]
 
 module.exports = {
   entry: ['babel-polyfill', './src/client/index.tsx'],
@@ -111,20 +132,21 @@ module.exports = {
       },
     },
   },
-  plugins: [
-    new Dotenv(),
-    new CleanWebpackPlugin([outputDirectory]),
-    new HtmlWebpackPlugin({
-      template: './public/index.html',
-      favicon: './public/favicon.ico',
-      title: 'Coursable',
-    }),
-    new MiniCssExtractPlugin({
-      filename: './css/[name].css',
-      chunkFilename: './css/[id].css',
-    }),
-    new CopyPlugin([
-      { from: './src/client/Assets', to: 'assets' },
-    ]),
-  ],
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        defaultVendors: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendor',
+          chunks: 'all',
+        },
+        // default: {
+        //   minChunks: 2,
+        //   priority: -20,
+        //   reuseExistingChunk: true,
+        // },
+      },
+    },
+  },
+  plugins,
 }

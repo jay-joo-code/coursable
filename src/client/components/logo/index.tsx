@@ -5,7 +5,7 @@ import LogoSVG from 'src/assets/svgs/logo.svg'
 const Logo = () => {
   return (
     <Link to='/'>
-      <LogoSVG />
+      <LogoSVG />ab
     </Link>
   )
 }

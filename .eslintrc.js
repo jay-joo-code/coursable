@@ -46,5 +46,14 @@ module.exports = {
     semi: ['warn', 'never'],
     'unused-imports/no-unused-imports': 'error',
     'no-empty-pattern': 'off',
+    'no-restricted-imports': [
+      'error',
+      {
+        paths: [
+          'lodash',
+          'antd',
+        ],
+      },
+    ],
   },
 }
