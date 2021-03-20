@@ -5,6 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 const Dotenv = require('dotenv-webpack')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const MomentLocalesPlugin = require('moment-locales-webpack-plugin')
 
 const outputDirectory = 'dist'
 
@@ -25,7 +26,9 @@ const plugins = [
   ]),
   new BundleAnalyzerPlugin({
     analyzerMode: 'static',
+    openAnalyzer: true,
   }),
+  new MomentLocalesPlugin(),
 ]
 
 module.exports = {
@@ -135,16 +138,8 @@ module.exports = {
   optimization: {
     splitChunks: {
       cacheGroups: {
-        defaultVendors: {
-          test: /[\\/]node_modules[\\/]/,
-          name: 'vendor',
-          chunks: 'all',
-        },
-        // default: {
-        //   minChunks: 2,
-        //   priority: -20,
-        //   reuseExistingChunk: true,
-        // },
+        react: { test: /[\\/]node_modules[\\/]((react).*)[\\/]/, name: 'react', chunks: 'all' },
+        vendors: { test: /[\\/]node_modules[\\/]((?!react).*)[\\/]/, name: 'vendors', chunks: 'all' },
       },
     },
   },
