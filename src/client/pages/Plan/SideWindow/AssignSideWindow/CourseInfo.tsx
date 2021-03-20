@@ -57,6 +57,14 @@ const CourseInfo = ({ requirement, assignedCourse }: CourseInfoProps) => {
     })
   }
 
+  // TODO: dynamically generate latest semester slug
+  const offerings = catalogWhenOffered?.slice(0, -1).split(', ') || []
+  const semesterSlug = offerings.includes('Spring')
+    ? 'SP21'
+    : offerings.includes('Fall')
+      ? 'FA20'
+      : null
+
   return (
     <Container>
       <Text
@@ -70,16 +78,20 @@ const CourseInfo = ({ requirement, assignedCourse }: CourseInfoProps) => {
       >{titleShort}</Text>
       <Space margin='.5rem 0' />
       <Text variant='h6'>
-        <a
-          href={`https://classes.cornell.edu/browse/roster/SP20/class/${subject}/${catalogNbr}`}
-          target='_blank'
-          rel='noreferrer'
-        >
-          <Span
-            underline
-            color={theme.info}
-          >Roster</Span>
-        </a> •
+        {semesterSlug && (
+          <>
+            <a
+              href={`https://classes.cornell.edu/browse/roster/${semesterSlug}/class/${subject}/${catalogNbr}`}
+              target='_blank'
+              rel='noreferrer'
+            >
+              <Span
+                underline
+                color={theme.info}
+              >Roster</Span>
+            </a> •
+          </>
+        )}
         <a
           href={`https://www.google.com/search?q=cornell+reddit+${subject}+${catalogNbr}`}
           target='_blank'
