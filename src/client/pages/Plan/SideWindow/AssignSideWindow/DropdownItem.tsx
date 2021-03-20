@@ -36,6 +36,11 @@ const DropdownItem = ({ courseData, requirementId }: DropdownItemProps) => {
         fontWeight={400}
         color={theme.textLight}
       >{courseData.subject} {courseData.catalogNbr}</Text>
+      <Text
+        variant='h6'
+        fontWeight={300}
+        color={theme.textMuted}
+      >{courseData.titleShort}</Text>
     </Container>
   )
 }

@@ -26,7 +26,7 @@ const plugins = [
   ]),
   new BundleAnalyzerPlugin({
     analyzerMode: 'static',
-    openAnalyzer: true,
+    openAnalyzer: false,
   }),
   new MomentLocalesPlugin(),
 ]

@@ -4,19 +4,39 @@ import Course from '../../models/Course'
 
 const courseRouter = express.Router()
 
+const isNumeric = (value) => {
+  return /^-?\d+$/.test(value)
+}
+
 courseRouter.get('/query', async (req, res) => {
   try {
     const { query }: { query?: string } = req.query
-    const [subject, catalogNbr] = query?.trim().split(' ') || ['', '']
+
+    // parse query
+    const match = query?.match(/\d+/)
+    const catalogNbr = match
+      ? match[0]
+      : ''
+    const firstLetter = query?.trim().split(' ')[0]
+    const subject = isNumeric(firstLetter)
+      ? ''
+      : firstLetter
+
+    console.log('subject, catalogNbr', subject, catalogNbr)
+
+    // generate mongoose query
     const subjectFilter = subject ? { 'data.subject': subject.toUpperCase() } : {}
     const catalogNbrFilter = catalogNbr ? { 'data.catalogNbr': catalogNbr } : {}
     const filter = substringQuery({
       ...subjectFilter,
       ...catalogNbrFilter,
     }, ['data.subject', 'data.catalogNbr'])
+
+    // fetch docs
     const docs = await Course.find(filter).limit(6)
     res.send(docs)
   } catch (e) {
+    console.log('e', e)
     res.status(500).send(e)
   }
 })
