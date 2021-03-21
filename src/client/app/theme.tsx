@@ -44,7 +44,7 @@ export const theme = {
   brand100: '#D98D8D',
 
   // text
-  text: '#24292E',
+  text: '#3B454E',
   textLight: '#575859',
   textMuted: '#737576',
   textPlaceholder: '#D3D7DB',

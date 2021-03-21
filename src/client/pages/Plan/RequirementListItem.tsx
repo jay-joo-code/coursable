@@ -55,18 +55,11 @@ const Container = styled(FlexRow)<ContainerProps>`
   }
 `
 
-interface SideWindowContainerProps {
-  isAssigned: boolean
-}
-
-const SideWindowContainer = styled.div<SideWindowContainerProps>`
+const SideWindowContainer = styled.div`
   position: absolute;
   top: 0;
   z-index: 2;
-  right: -245px;
-
-  // isAssigned
-  right: ${(props) => props.isAssigned && '-305px'};
+  right: -310px;
 `
 
 const RequirementListItem = ({ requirementId, row }: RequirementListItemProps) => {
@@ -142,7 +135,7 @@ const RequirementListItem = ({ requirementId, row }: RequirementListItemProps) =
               />
             </SVGOnHover>
           </Container>
-          <SideWindowContainer isAssigned={courseId != null}>
+          <SideWindowContainer>
             {isWindowOpen && (
               <SideWindow
                 setIsWindowOpen={setIsWindowOpen}

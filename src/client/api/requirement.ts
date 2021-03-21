@@ -6,7 +6,7 @@ export const fetchRequirementByIdConfg = (id) => ({
   url: `/public/requirement/${id}`,
   options: {
     refetchOnWindowFocus: false,
-  }
+  },
 })
 
 export const useRequirementById = (id) => {
@@ -41,7 +41,7 @@ export const useRequirementById = (id) => {
 // }
 
 export const useUpdateRequirementById = (_id: string) => {
-  const { mutate: updateRequirement, ...rest } = useCustomMutation<IRequirementDoc>({
+  const { mutateAsync: updateRequirement, ...rest } = useCustomMutation<IRequirementDoc>({
     url: `/public/requirement/${_id}`,
     method: 'put',
     updateLocal: {

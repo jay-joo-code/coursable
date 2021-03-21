@@ -7,7 +7,6 @@ import Text from 'src/components/text'
 import Span from 'src/components/text/Span'
 import { ICourseDoc } from 'src/types/course'
 import { IRequirementDoc } from 'src/types/requirement'
-import { courseName } from 'src/util/roster'
 import styled from 'styled-components'
 
 interface CourseInfoProps {
@@ -45,7 +44,7 @@ const ReadMoreButton = styled.button`
 `
 
 const CourseInfo = ({ requirement, assignedCourse }: CourseInfoProps) => {
-  const { titleShort, catalogWhenOffered, catalogPrereqCoreq, description, subject, catalogNbr } = assignedCourse?.data || {}
+  const { catalogWhenOffered, catalogPrereqCoreq, description, subject, catalogNbr } = assignedCourse?.data || {}
   const { isFixedAssignment } = requirement || {}
   const [isExpanded, setIsExpanded] = useState(false)
   const { updateRequirement } = useUpdateRequirementById(requirement?._id)
@@ -67,16 +66,48 @@ const CourseInfo = ({ requirement, assignedCourse }: CourseInfoProps) => {
 
   return (
     <Container>
+      {catalogWhenOffered && (
+        <>
+          <Text
+            variant='h5'
+            fontWeight={500}
+          >When offered</Text>
+          <Text
+            variant='h5'
+            color={theme.textLight}
+          >{catalogWhenOffered}</Text>
+          <Space margin='.5rem 0' />
+        </>
+      )}
       <Text
-        variant='h4'
+        variant='h5'
         fontWeight={500}
-      >{courseName(assignedCourse)}</Text>
+      >Prerequisites / Corequisites</Text>
       <Text
-        variant='h6'
-        fontWeight={400}
-        color={theme.textMuted}
-      >{titleShort}</Text>
+        variant='h5'
+        color={theme.textLight}
+      >{catalogPrereqCoreq || 'None'}</Text>
       <Space margin='.5rem 0' />
+      {description && (
+        <>
+          <Text
+            variant='h5'
+            fontWeight={500}
+          >Description</Text>
+          <Description
+            variant='h5'
+            isExpanded={isExpanded}
+            color={theme.textLight}
+          >{description}</Description>
+          <Space margin='.2rem 0' />
+          <ReadMoreButton onClick={() => setIsExpanded(!isExpanded)}>Read {isExpanded ? 'less' : 'more'}</ReadMoreButton>
+          <Space margin='.5rem 0' />
+        </>
+      )}
+      <Text
+        variant='h5'
+        fontWeight={500}
+      >Links</Text>
       <Text variant='h6'>
         {semesterSlug && (
           <>
@@ -113,37 +144,6 @@ const CourseInfo = ({ requirement, assignedCourse }: CourseInfoProps) => {
           > Reviews</Span>
         </a>
       </Text>
-      <Space margin='.8rem 0' />
-      {catalogWhenOffered && (
-        <>
-          <Text
-            variant='h6'
-            fontWeight={500}
-          >When offered</Text>
-          <Text variant='h6'>{catalogWhenOffered}</Text>
-          <Space margin='.5rem 0' />
-        </>
-      )}
-      <Text
-        variant='h6'
-        fontWeight={500}
-      >Prerequisites / Corequisites</Text>
-      <Text variant='h6'>{catalogPrereqCoreq || 'None'}</Text>
-      {description && (
-        <>
-          <Space margin='.5rem 0' />
-          <Text
-            variant='h6'
-            fontWeight={500}
-          >Description</Text>
-          <Description
-            variant='h6'
-            isExpanded={isExpanded}
-          >{description}</Description>
-          <Space margin='.2rem 0' />
-          <ReadMoreButton onClick={() => setIsExpanded(!isExpanded)}>Read {isExpanded ? 'less' : 'more'}</ReadMoreButton>
-        </>
-      )}
       {isFixedAssignment && <Space margin='1rem 0' />}
       {!isFixedAssignment && (
         <>

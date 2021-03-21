@@ -126,6 +126,7 @@ export interface TextAreaProps extends InputHTMLAttributes<HTMLTextAreaElement> 
   style?: any
   maxRows?: number
   minRows?: number
+  isDefaultHiddenBorders?: boolean
 }
 
 export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>((props, ref) => {

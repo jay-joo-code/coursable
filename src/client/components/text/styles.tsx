@@ -14,7 +14,7 @@ const CoreText = styled.p<CoreTextProps>`
   color: ${(props) => props.theme.text};
   white-space: pre-line;
   word-break: break-word;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.5;
   letter-spacing: .5px;
 

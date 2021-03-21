@@ -206,6 +206,7 @@ export const TextAreaContainer = styled.div``
 
 interface StyledTextAreaProps {
   error?: boolean
+  isDefaultHiddenBorders?: boolean
 }
 
 export const StyledTextArea = styled(Textarea)<StyledTextAreaProps>`
@@ -227,9 +228,16 @@ export const StyledTextArea = styled(Textarea)<StyledTextAreaProps>`
   // error
   border-color: ${(props) => props.error && props.theme.danger};
 
-  &::placeholder {
+  &:placeholder {
     color: ${(props) => props.theme.textPlaceholder};
   }
+  
+  // isDefaultHiddenBorders
+  border-color: ${(props) => props.isDefaultHiddenBorders && props.theme.bg};
+  &:hover {
+    border-color: ${(props) => props.isDefaultHiddenBorders && props.theme.borderLight};
+  }
+  
   &:focus {
     border-color: ${(props) => props.theme.brand};
   }
