@@ -79,6 +79,22 @@ planRouter.post('/:psid/add-requirement', async (req, res) => {
   }
 })
 
+planRouter.post('/:psid/remove-requirement', async (req, res) => {
+  try {
+    const { psid } = req.params
+    const { _id: requirementId } = req.body
+
+    const plan = await Plan.findOne({ shortId: psid })
+    const newSemesters = plan?.semesters.map((semester) => semester.filter((id) => requirementId !== id.toString()))
+    plan.semesters = newSemesters
+    await plan?.save()
+
+    res.send(plan)
+  } catch (e) {
+    res.status(500).send(e)
+  }
+})
+
 planRouter.post('/:psid/add-semester', async (req, res) => {
   try {
     // adds semester (empty array) after req.body.semesterNumber

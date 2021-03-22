@@ -60,17 +60,13 @@ export const useUpdateRequirementById = (_id: string) => {
   }
 }
 
-// export const useDeleteListingById = (_id: string) => {
-//   const { mutate: deleteListing, ...rest } = useCustomMutation<ListingDoc>({
-//     url: `/private/task/${_id}`,
-//     method: 'delete',
-//     updateLocal: {
-//       queryConfigs: [fetchMyListingsConfig()],
-//       type: 'delete',
-//     },
-//   })
-//   return {
-//     ...rest,
-//     deleteListing,
-//   }
-// }
+export const useDeleteRequirementById = (_id: string) => {
+  const { mutateAsync: deleteRequirement, ...rest } = useCustomMutation<IRequirementDoc>({
+    url: `/public/requirement/${_id}`,
+    method: 'delete',
+  })
+  return {
+    ...rest,
+    deleteRequirement,
+  }
+}

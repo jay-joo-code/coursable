@@ -8,8 +8,10 @@ interface OutsideClickListenerProps {
 const useOutsideAlerter = (ref, onOutsideClick) => {
   useEffect(() => {
     function handleClickOutside (event) {
-      if (ref.current && !ref.current.contains(event.target)) {
+      if (ref.current && !ref.current.contains(event.target) && event.target.tagName.toLowerCase() !== 'button') {
         onOutsideClick()
+      } else {
+        return false
       }
     }
 

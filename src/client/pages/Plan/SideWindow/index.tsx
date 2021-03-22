@@ -7,6 +7,7 @@ import { IRequirementDoc } from 'src/types/requirement'
 import { courseName } from 'src/util/roster'
 import styled from 'styled-components'
 import CourseTab from './CourseTab'
+import DropdownMenu from './DropdownMenu'
 import NotesTab from './NotesTab'
 
 interface SideWindowProps {
@@ -24,6 +25,9 @@ const Container = styled.div`
 
 const TopContainer = styled.div`
   padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
 `
 
 type ITab = 'course' | 'notes' | string
@@ -43,20 +47,25 @@ const SideWindow = ({ requirement, setIsWindowOpen }: SideWindowProps) => {
     : requirement.name
 
   return (
-    <OutsideClickListener onOutsideClick={() => setIsWindowOpen(false)}>
+    <OutsideClickListener
+      onOutsideClick={() => setIsWindowOpen(false)}
+    >
       <Container >
         <TopContainer>
-          <Text
-            variant='h4'
-            fontWeight={500}
-          >{heading}</Text>
-          {course && (
+          <div>
             <Text
-              variant='h6'
-              fontWeight={400}
-              color={theme.textMuted}
-            >{course?.data.titleShort}</Text>
-          )}
+              variant='h4'
+              fontWeight={500}
+            >{heading}</Text>
+            {course && (
+              <Text
+                variant='h6'
+                fontWeight={400}
+                color={theme.textMuted}
+              >{course?.data.titleShort}</Text>
+            )}
+          </div>
+          <DropdownMenu requirement={requirement} />
         </TopContainer>
         <Tabs
           currentValue={tab}

@@ -21,6 +21,7 @@ const customStyles = {
   },
   overlay: {
     background: hexToRGBA('#000000', 0.3),
+    zIndex: 9999,
   },
 }
 

@@ -64,7 +64,7 @@ const SideWindowContainer = styled.div`
 
 const RequirementListItem = ({ requirementId, row }: RequirementListItemProps) => {
   const { requirement } = useRequirementById(requirementId)
-  const { name, course, courseId, isFixedAssignment } = requirement || {}
+  const { name, course, courseId, isFixedAssignment, description } = requirement || {}
   const [isWindowOpen, setIsWindowOpen] = useState(false)
   const title = (isFixedAssignment || !courseId)
     ? name
@@ -114,6 +114,18 @@ const RequirementListItem = ({ requirementId, row }: RequirementListItemProps) =
                     background={theme.brandBg}
                     color={theme.brand300}
                   />
+                </>
+              )}
+
+              {/* notes (description) */}
+              {description && (
+                <>
+                  <Space margin='.5rem 0' />
+                  <Text
+                    variant='h6'
+                    color={theme.textMuted}
+                    maxLines={2}
+                  >{description}</Text>
                 </>
               )}
 

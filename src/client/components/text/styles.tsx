@@ -8,6 +8,7 @@ export interface CoreTextProps {
   maxWidth?: number
   margin?: string
   uppercase?: boolean
+  maxLines?: number
 }
 
 const CoreText = styled.p<CoreTextProps>`
@@ -40,6 +41,13 @@ const CoreText = styled.p<CoreTextProps>`
 
   // uppercase
   text-transform: ${(props) => props.uppercase && 'uppercase'};
+
+  // maxLines
+  overflow: ${(props) => props.maxLines && 'hidden'};
+  text-overflow: ${(props) => props.maxLines && 'ellipsis'};
+  display: ${(props) => props.maxLines && '-webkit-box'};
+  -webkit-line-clamp: ${(props) => props.maxLines && props.maxLines};
+  -webkit-box-orient: ${(props) => props.maxLines && 'vertical'};
 `
 
 export const H1 = styled(CoreText)`

@@ -5,6 +5,7 @@ interface TextProps extends CoreTextProps {
   variant: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'h7' | 'p'
   children: React.ReactNode
   style?: any
+  maxLines?: number
 }
 
 const Text = ({ variant, children, ...rest }: TextProps) => {

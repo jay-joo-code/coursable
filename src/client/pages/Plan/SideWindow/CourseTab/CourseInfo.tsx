@@ -44,7 +44,7 @@ const ReadMoreButton = styled.button`
 `
 
 const CourseInfo = ({ requirement, assignedCourse }: CourseInfoProps) => {
-  const { catalogWhenOffered, catalogPrereqCoreq, description, subject, catalogNbr } = assignedCourse?.data || {}
+  const { enrollGroups, catalogWhenOffered, catalogPrereqCoreq, description, subject, catalogNbr } = assignedCourse?.data || {}
   const { isFixedAssignment } = requirement || {}
   const [isExpanded, setIsExpanded] = useState(false)
   const { updateRequirement } = useUpdateRequirementById(requirement?._id)
@@ -66,6 +66,19 @@ const CourseInfo = ({ requirement, assignedCourse }: CourseInfoProps) => {
 
   return (
     <Container>
+      {enrollGroups?.length >= 1 && (
+        <>
+          <Text
+            variant='h5'
+            fontWeight={500}
+          >Credits</Text>
+          <Text
+            variant='h5'
+            color={theme.textLight}
+          >{enrollGroups[0]?.unitsMinimum} credits</Text>
+          <Space margin='.5rem 0' />
+        </>
+      )}
       {catalogWhenOffered && (
         <>
           <Text
