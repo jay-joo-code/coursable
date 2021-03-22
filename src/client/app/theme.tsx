@@ -10,18 +10,24 @@ export const theme = {
   success100: '#B3E0C4',
 
   info: '#0275d8',
-  info500: '#0275d8',
-  info300: '#4298E2',
-  info100: '#81BAEC',
-  info50: '#D5E8F9',
+  info600: '#0275d8',
+  info500: '#2C8CDF',
+  info400: '#56A3E5',
+  info300: '#81BAEC',
+  info200: '#ABD1F2',
+  info100: '#D5E8F9',
+  info50: '#EAF4FC',
 
   warning: '#f0ad4e',
   warning100: '#FDF1E2',
 
   danger: '#de6362',
   danger500: '#de6362',
+  danger400: '#E78A8A',
   danger300: '#EFB1B1',
-  danger100: '#F3C5C5',
+  danger200: '#F3C5C5',
+  danger100: '#F9E2E2',
+  danger50: '#FCF1F1',
 
   // bg
   bg: '#ffffff',

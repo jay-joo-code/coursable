@@ -4,11 +4,11 @@ import { useRequirementById } from 'src/api/requirement'
 import theme from 'src/app/theme'
 import Icon from 'src/components/icon'
 import { FlexRow, Space } from 'src/components/layout'
-import Pill from 'src/components/pill'
 import Text from 'src/components/text'
 import styled from 'styled-components'
 import SideWindow from './SideWindow'
 import { Draggable } from 'react-beautiful-dnd'
+import Badge from 'src/components/badge'
 
 interface RequirementListItemProps {
   requirementId: string
@@ -26,12 +26,13 @@ const SVGOnHover = styled.div`
 
 interface ContainerProps {
   isDragging: boolean
+  isError: boolean
 }
 
 const Container = styled(FlexRow)<ContainerProps>`
   border: 1px solid ${(props) => props.theme.border};
   border-radius: 8px;
-  padding: 1rem .5rem 1rem 1rem;
+  padding: .7rem .5rem .7rem .7rem;
   margin: .5rem 0;
   cursor: move;
   cursor: grab;
@@ -46,6 +47,9 @@ const Container = styled(FlexRow)<ContainerProps>`
       box-shadow: ${(props) => props.theme.shadow};
     }
   }
+
+  // isError
+  /* border: ${(props) => props.isError && `1px solid ${props.theme.danger100}`}; */
 
   // isDragging
   border: ${(props) => (props.isDragging) && `2px solid ${props.theme.grey[600]}`};
@@ -74,6 +78,8 @@ const RequirementListItem = ({ requirementId, row }: RequirementListItemProps) =
     setIsWindowOpen(true)
   }
 
+  if (!requirement) return null
+
   return (
     <Draggable
       key={requirementId}
@@ -89,6 +95,7 @@ const RequirementListItem = ({ requirementId, row }: RequirementListItemProps) =
             {...provided.draggableProps}
             {...provided.dragHandleProps}
             onClick={handleClick}
+            isError={!course}
           >
             <div>
               <Text
@@ -96,25 +103,13 @@ const RequirementListItem = ({ requirementId, row }: RequirementListItemProps) =
                 fontWeight={500}
               >{title}</Text>
 
-              {/* has assigned course */}
+              {/* course title */}
               {course && (
                 <Text
                   variant='h6'
                   fontWeight={400}
                   color={theme.textLight}
                 >{course.data.titleShort}</Text>
-              )}
-
-              {/* unassigned */}
-              {!course && (
-                <>
-                  <Space margin='.5rem 0' />
-                  <Pill
-                    label='Unassigned'
-                    background={theme.brandBg}
-                    color={theme.brand300}
-                  />
-                </>
               )}
 
               {/* notes (description) */}
@@ -129,15 +124,33 @@ const RequirementListItem = ({ requirementId, row }: RequirementListItemProps) =
                 </>
               )}
 
-              {(!isFixedAssignment && courseId && name) && (
+              {/* unassigned */}
+              {!course && (
                 <>
-                  <Space margin='.8rem 0' />
-                  <Pill
-                    label={name}
-                    background={theme.info50}
-                    color={theme.info300}
+                  <Space margin='.5rem 0' />
+                  {/* <Text
+                    variant='h6'
+                    color={theme.danger400}
+                    fontWeight={500}
+                  >Unassigned</Text> */}
+                  <Badge
+                    label='Course unassigned'
+                    color={theme.danger500}
+                    background={theme.danger50}
                   />
                 </>
+              )}
+
+              {/* satisfies badge */}
+              {(!isFixedAssignment && courseId && name) && (
+                  <>
+                    <Space margin='.8rem 0' />
+                    <Badge
+                      label={`Satisfies: ${name}`}
+                      color={theme.info500}
+                      background={theme.info50}
+                    />
+                  </>
               )}
             </div>
             <SVGOnHover>

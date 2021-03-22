@@ -91,5 +91,5 @@ export const H6 = styled(CoreText)`
 `
 
 export const H7 = styled(CoreText)`
-  font-size: 10px;
+  font-size: 11px;
 `

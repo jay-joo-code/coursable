@@ -33,6 +33,8 @@ const TopContainer = styled.div`
 type ITab = 'course' | 'notes' | string
 
 const SideWindow = ({ requirement, setIsWindowOpen }: SideWindowProps) => {
+  const { name, courseId, isFixedAssignment } = requirement || {}
+
   // tabs
   const [tab, setTab] = useState<ITab>('course')
   const tabToComponent = {

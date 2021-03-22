@@ -14,6 +14,7 @@ requirementRouter.get('/:id', async (req, res) => {
 
 requirementRouter.put('/:id', async (req, res) => {
   try {
+    console.log('req.body :>> ', req.body)
     const note = await Requirement.findByIdAndUpdate(req.params.id, req.body, { new: true })
     res.send(note)
   } catch (e) {

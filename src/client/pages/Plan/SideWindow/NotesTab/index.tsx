@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { memo, useEffect, useRef, useState } from 'react'
 import { IRequirementDoc } from 'src/types/requirement'
 import { useUpdateRequirementById } from 'src/api/requirement'
 import styled from 'styled-components'
@@ -16,7 +16,7 @@ const Container = styled.div`
 const NotesTab = ({ requirement }: NotesTabProps) => {
   const [text, setText] = useState(requirement?.description)
   const handleChange = (e) => setText(e.currentTarget.value)
-  const [debouncedText] = useDebounce(text, 1000)
+  const [debouncedText] = useDebounce(text, 1000, { leading: true })
   const { updateRequirement } = useUpdateRequirementById(requirement?._id)
 
   useEffect(() => {
@@ -24,6 +24,19 @@ const NotesTab = ({ requirement }: NotesTabProps) => {
       description: debouncedText,
     })
   }, [debouncedText])
+
+  const valueRef = useRef('')
+  useEffect(() => {
+    valueRef.current = text
+  }, [text])
+
+  useEffect(() => {
+    return () => {
+      updateRequirement({
+        description: valueRef.current,
+      })
+    }
+  }, [])
 
   return (
     <Container>
@@ -39,4 +52,4 @@ const NotesTab = ({ requirement }: NotesTabProps) => {
   )
 }
 
-export default NotesTab
+export default memo(NotesTab)

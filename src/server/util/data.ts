@@ -24,7 +24,6 @@ export const ENGI_MATH1910 = {
   credits: 4,
   isFixedAssignment: true,
   courseId: CRSEID_MATH1910,
-  description: 'Math requirement desc',
   links: [{ label: 'Google', href: 'https://www.google.com/' }],
 }
 
@@ -33,7 +32,6 @@ export const ENGI_MATH1920 = {
   credits: 4,
   isFixedAssignment: true,
   courseId: CRSEID_MATH1920,
-  description: 'Math requirement desc',
   links: [{ label: 'Google', href: 'https://www.google.com/' }],
 }
 
@@ -42,7 +40,6 @@ export const ENGI_MATH2940 = {
   credits: 4,
   isFixedAssignment: true,
   courseId: CRSEID_MATH2940,
-  description: 'Math requirement desc',
   links: [{ label: 'Google', href: 'https://www.google.com/' }],
 }
 
@@ -51,7 +48,6 @@ export const ENGI_CHEM2090 = {
   credits: 4,
   isFixedAssignment: true,
   courseId: CRSEID_CHEM2090,
-  description: 'Test requirement desc',
   links: [{ label: 'Google', href: 'https://www.google.com/' }],
 }
 
@@ -60,7 +56,6 @@ export const ENGI_PHYS1112 = {
   credits: 4,
   isFixedAssignment: true,
   courseId: CRSEID_PHYS1112,
-  description: 'Test requirement desc',
   links: [{ label: 'Google', href: 'https://www.google.com/' }],
 }
 
@@ -69,7 +64,6 @@ export const ENGI_PHYS2213 = {
   credits: 4,
   isFixedAssignment: true,
   courseId: CRSEID_PHYS2213,
-  description: 'Test requirement desc',
   links: [{ label: 'Google', href: 'https://www.google.com/' }],
 }
 
@@ -78,7 +72,6 @@ export const ENGI_CS2800 = {
   credits: 3,
   isFixedAssignment: true,
   courseId: CRSEID_CS2800,
-  description: 'Test requirement desc',
   links: [{ label: 'Google', href: 'https://www.google.com/' }],
 }
 
@@ -87,7 +80,6 @@ export const ENGI_CS3110 = {
   credits: 4,
   isFixedAssignment: true,
   courseId: CRSEID_CS3110,
-  description: 'Test requirement desc',
   links: [{ label: 'Google', href: 'https://www.google.com/' }],
 }
 
@@ -96,7 +88,6 @@ export const ENGI_CS4820 = {
   credits: 4,
   isFixedAssignment: true,
   courseId: CRSEID_CS4820,
-  description: 'Test requirement desc',
   links: [{ label: 'Google', href: 'https://www.google.com/' }],
 }
 
@@ -105,7 +96,6 @@ export const ENGI_CS4410 = {
   credits: 3,
   isFixedAssignment: true,
   courseId: CRSEID_CS4410,
-  description: 'Test requirement desc',
   links: [{ label: 'Google', href: 'https://www.google.com/' }],
 }
 
@@ -126,7 +116,6 @@ export const ISST_ENGRD2700 = {
   credits: 3,
   isFixedAssignment: true,
   courseId: CRSEID_ENGRD2700,
-  description: 'Test requirement desc',
   links: [{ label: 'Google', href: 'https://www.google.com/' }],
 }
 
@@ -135,7 +124,6 @@ export const ISST_INFO1200 = {
   credits: 3,
   isFixedAssignment: true,
   courseId: CRSEID_INFO1200,
-  description: 'Test requirement desc',
   links: [{ label: 'Google', href: 'https://www.google.com/' }],
 }
 
@@ -144,7 +132,6 @@ export const ISST_INFO2040 = {
   credits: 3,
   isFixedAssignment: true,
   courseId: CRSEID_INFO2040,
-  description: 'Test requirement desc',
   links: [{ label: 'Google', href: 'https://www.google.com/' }],
 }
 
@@ -153,7 +140,6 @@ export const ISST_INFO2300 = {
   credits: 3,
   isFixedAssignment: true,
   courseId: CRSEID_INFO2300,
-  description: 'Test requirement desc',
   links: [{ label: 'Google', href: 'https://www.google.com/' }],
 }
 
@@ -162,7 +148,6 @@ export const ISST_ORIE3120 = {
   credits: 3,
   isFixedAssignment: true,
   courseId: CRSEID_ORIE3120,
-  description: 'Test requirement desc',
   links: [{ label: 'Google', href: 'https://www.google.com/' }],
 }
 
@@ -171,7 +156,6 @@ export const ISST_ORIE3300 = {
   credits: 3,
   isFixedAssignment: true,
   courseId: CRSEID_ORIE3300,
-  description: 'Test requirement desc',
   links: [{ label: 'Google', href: 'https://www.google.com/' }],
 }
 
@@ -180,7 +164,6 @@ export const ISST_ORIE3500 = {
   credits: 3,
   isFixedAssignment: true,
   courseId: CRSEID_ORIE3500,
-  description: 'Test requirement desc',
   links: [{ label: 'Google', href: 'https://www.google.com/' }],
 }
 
@@ -189,7 +172,6 @@ export const ISST_ORIE3800 = {
   credits: 3,
   isFixedAssignment: true,
   courseId: CRSEID_ORIE3800,
-  description: 'Test requirement desc',
   links: [{ label: 'Google', href: 'https://www.google.com/' }],
 }
 
@@ -198,7 +180,6 @@ export const ENGI_PE = {
   name: 'PE',
   credits: 3,
   isFixedAssignment: false,
-  description: 'Test requirement desc',
   links: [{ label: 'Google', href: 'https://www.google.com/' }],
 }
 
@@ -206,7 +187,6 @@ export const ENGI_CS111X = {
   name: 'CS 111x',
   credits: 4,
   isFixedAssignment: false,
-  description: 'Test requirement desc',
   links: [{ label: 'Google', href: 'https://www.google.com/' }],
 }
 
@@ -214,7 +194,6 @@ export const ENGI_ENGRI1XXX = {
   name: 'ENGRI 1xxx',
   credits: 3,
   isFixedAssignment: false,
-  description: 'Test requirement desc',
   links: [{ label: 'Google', href: 'https://www.google.com/' }],
 }
 
@@ -222,7 +201,6 @@ export const ENGI_CS2110 = {
   name: 'ENGRD / CS 2110',
   credits: 3,
   isFixedAssignment: false,
-  description: 'Test requirement desc',
   links: [{ label: 'Google', href: 'https://www.google.com/' }],
 }
 
@@ -230,7 +208,6 @@ export const ENGI_LIBSTUD = {
   name: 'Liberal Studies',
   credits: 3,
   isFixedAssignment: false,
-  description: 'Test requirement desc',
   links: [{ label: 'Google', href: 'https://www.google.com/' }],
 }
 
@@ -238,7 +215,6 @@ export const ENGI_ENGRD = {
   name: 'ENGRD 2xxx',
   credits: 3,
   isFixedAssignment: false,
-  description: 'Test requirement desc',
   links: [{ label: 'Google', href: 'https://www.google.com/' }],
 }
 
@@ -246,7 +222,6 @@ export const ENGI_CHEM2080 = {
   name: 'CHEM 2080',
   credits: 4,
   isFixedAssignment: false,
-  description: 'Test requirement desc',
   links: [{ label: 'Google', href: 'https://www.google.com/' }],
 }
 
@@ -254,7 +229,6 @@ export const ENGI_CS3410 = {
   name: 'CS 3410 / 3420',
   credits: 4,
   isFixedAssignment: false,
-  description: 'Test requirement desc',
   links: [{ label: 'Google', href: 'https://www.google.com/' }],
 }
 
@@ -262,7 +236,6 @@ export const ENGI_MAJELECTIVE = {
   name: 'Major Elective',
   credits: 3,
   isFixedAssignment: false,
-  description: 'Test requirement desc',
   links: [{ label: 'Google', href: 'https://www.google.com/' }],
 }
 
@@ -270,7 +243,6 @@ export const ENGI_ADVELECTIVE = {
   name: 'Advisor Elective',
   credits: 3,
   isFixedAssignment: false,
-  description: 'Test requirement desc',
   links: [{ label: 'Google', href: 'https://www.google.com/' }],
 }
 
@@ -278,7 +250,6 @@ export const ENGI_FWS = {
   name: 'FWS',
   credits: 3,
   isFixedAssignment: false,
-  description: 'FWS desc',
   links: [{ label: 'Google', href: 'https://www.google.com/' }],
 }
 
@@ -287,7 +258,6 @@ export const ISST_CONC1 = {
   name: 'Conc. I Course',
   credits: 3,
   isFixedAssignment: false,
-  description: 'Test requirement desc',
   links: [{ label: 'Google', href: 'https://www.google.com/' }],
 }
 
@@ -295,7 +265,6 @@ export const ISST_CONC2 = {
   name: 'Conc. II Course',
   credits: 3,
   isFixedAssignment: false,
-  description: 'Test requirement desc',
   links: [{ label: 'Google', href: 'https://www.google.com/' }],
 }
 
@@ -303,7 +272,6 @@ export const ISST_MLDS = {
   name: 'ML / Data Science',
   credits: 3,
   isFixedAssignment: false,
-  description: 'Test requirement desc',
   links: [{ label: 'Google', href: 'https://www.google.com/' }],
 }
 
@@ -311,7 +279,6 @@ export const ISST_INFO2450 = {
   name: 'INFO 2450 or ENGRC 3350',
   credits: 3,
   isFixedAssignment: false,
-  description: 'Test requirement desc',
   links: [{ label: 'Google', href: 'https://www.google.com/' }],
 }
 
@@ -319,7 +286,6 @@ export const ISST_PHYS2214 = {
   name: 'PHYS 2214',
   credits: 3,
   isFixedAssignment: false,
-  description: 'Test requirement desc',
   links: [{ label: 'Google', href: 'https://www.google.com/' }],
 }
 
@@ -327,7 +293,6 @@ export const ISST_CS2800 = {
   name: 'CS 2800 or MATH 3040 or MATH 2930',
   credits: 3,
   isFixedAssignment: false,
-  description: 'Test requirement desc',
   links: [{ label: 'Google', href: 'https://www.google.com/' }],
 }
 
@@ -335,7 +300,6 @@ export const ISST_SPELECTIVE = {
   name: 'Special Elective',
   credits: 3,
   isFixedAssignment: false,
-  description: 'Test requirement desc',
   links: [{ label: 'Google', href: 'https://www.google.com/' }],
 }
 
@@ -343,7 +307,6 @@ export const ISST_3300OR4300 = {
   name: 'ISST 3300 or 4300',
   credits: 3,
   isFixedAssignment: false,
-  description: 'Test requirement desc',
   links: [{ label: 'Google', href: 'https://www.google.com/' }],
 }
 
