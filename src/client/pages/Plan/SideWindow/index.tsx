@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import theme from 'src/app/theme'
+import Badge from 'src/components/badge'
+import { Space } from 'src/components/layout'
 import OutsideClickListener from 'src/components/layout/OutsideClickListener'
 import Tabs from 'src/components/tabs'
 import Text from 'src/components/text'
@@ -33,7 +35,7 @@ const TopContainer = styled.div`
 type ITab = 'course' | 'notes' | string
 
 const SideWindow = ({ requirement, setIsWindowOpen }: SideWindowProps) => {
-  const { name, courseId, isFixedAssignment } = requirement || {}
+  const { name, courseId, isFixedAssignment, course } = requirement || {}
 
   // tabs
   const [tab, setTab] = useState<ITab>('course')
@@ -43,7 +45,6 @@ const SideWindow = ({ requirement, setIsWindowOpen }: SideWindowProps) => {
   }
 
   // heading
-  const { course } = requirement || {}
   const heading = course
     ? courseName(course)
     : requirement.name
@@ -65,6 +66,30 @@ const SideWindow = ({ requirement, setIsWindowOpen }: SideWindowProps) => {
                 fontWeight={400}
                 color={theme.textMuted}
               >{course?.data.titleShort}</Text>
+            )}
+
+            {/* unassigned */}
+            {!course && (
+              <>
+                <Space margin='.5rem 0' />
+                <Badge
+                  label='Course unassigned'
+                  color={theme.danger500}
+                  background={theme.danger50}
+                />
+              </>
+            )}
+
+            {/* satisfies badge */}
+            {(!isFixedAssignment && courseId && name) && (
+              <>
+                <Space margin='.8rem 0' />
+                <Badge
+                  label={`Satisfies: ${name}`}
+                  color={theme.info500}
+                  background={theme.info50}
+                />
+              </>
             )}
           </div>
           <DropdownMenu requirement={requirement} />

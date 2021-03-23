@@ -128,11 +128,6 @@ const RequirementListItem = ({ requirementId, row }: RequirementListItemProps) =
               {!course && (
                 <>
                   <Space margin='.5rem 0' />
-                  {/* <Text
-                    variant='h6'
-                    color={theme.danger400}
-                    fontWeight={500}
-                  >Unassigned</Text> */}
                   <Badge
                     label='Course unassigned'
                     color={theme.danger500}
@@ -143,14 +138,14 @@ const RequirementListItem = ({ requirementId, row }: RequirementListItemProps) =
 
               {/* satisfies badge */}
               {(!isFixedAssignment && courseId && name) && (
-                  <>
-                    <Space margin='.8rem 0' />
-                    <Badge
-                      label={`Satisfies: ${name}`}
-                      color={theme.info500}
-                      background={theme.info50}
-                    />
-                  </>
+                <>
+                  <Space margin='.8rem 0' />
+                  <Badge
+                    label={`Satisfies: ${name}`}
+                    color={theme.info500}
+                    background={theme.info50}
+                  />
+                </>
               )}
             </div>
             <SVGOnHover>

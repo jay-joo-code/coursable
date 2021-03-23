@@ -39,7 +39,6 @@ const CourseSearch = ({ requirementId }: CourseSearchProps) => {
       <Input
         value={text}
         onChange={(e) => setText(e.target.value)}
-        placeholder='ex) CS 1110'
         autoFocus
       />
       <Space margin='.2rem 0' />
