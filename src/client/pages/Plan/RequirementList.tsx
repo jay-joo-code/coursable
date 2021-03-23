@@ -2,12 +2,14 @@ import Dropdown from 'antd/lib/dropdown'
 import Menu from 'antd/lib/menu'
 import React, { memo, useState } from 'react'
 import { Droppable } from 'react-beautiful-dnd'
-import { useDeleteSemester } from 'src/api/plan'
+import { useAddRequirement, useDeleteSemester } from 'src/api/plan'
+import { useCreateRequirement } from 'src/api/requirement'
 import theme from 'src/app/theme'
-import { Button } from 'src/components/buttons'
+import RequirementForm from 'src/components/forms/RequirementForm'
 import Icon from 'src/components/icon'
 import { FlexRow, Space } from 'src/components/layout'
 import Modal from 'src/components/modal'
+import ConfirmationModal from 'src/components/modal/ConfirmationModal'
 import Text from 'src/components/text'
 import useCurrentPsid from 'src/hooks/useCurrentPsid'
 import { ISemester } from 'src/types/requirement'
@@ -28,6 +30,7 @@ interface ContainerProps {
 
 const Container = styled.div<ContainerProps>`
   padding: 1rem;
+  margin: 0 .5rem;
   width: 240px;
   background: ${(props) => props.theme.grey[100]};
   border-radius: 8px;
@@ -36,8 +39,13 @@ const Container = styled.div<ContainerProps>`
   background: ${(props) => props.isDraggingOver && props.theme.brandBg};
 `
 
-const menu = (openDeleteModal) => (
+const menu = (openAddRequirementModal, openDeleteModal) => (
   <Menu>
+    <Menu.Item
+      onClick={openAddRequirementModal}
+    >
+      Add requirement
+    </Menu.Item>
     <Menu.Item
       style={{ color: theme.danger }}
       onClick={openDeleteModal}
@@ -52,9 +60,10 @@ const RequirementList = ({ semester, semesterNumber }: RequirementListProps) => 
     ? 'Transfer Credits'
     : `Semester ${semesterNumber}`
 
+  const psid = useCurrentPsid()
+
   // delete semester handling
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
-  const psid = useCurrentPsid()
   const { deleteSemester } = useDeleteSemester(psid)
 
   const openDeleteModal = () => setIsDeleteModalOpen(true)
@@ -62,6 +71,25 @@ const RequirementList = ({ semester, semesterNumber }: RequirementListProps) => 
     deleteSemester({ semesterNumber })
 
     setIsDeleteModalOpen(false)
+  }
+
+  // add requirement handling
+  const [isReqModalOpen, setIsReqModalOpen] = useState(false)
+  const openAddRequirementModal = () => setIsReqModalOpen(true)
+  const { createRequirement } = useCreateRequirement()
+  const { addRequirement } = useAddRequirement(psid)
+
+  const handleCreateRequirement = async (reqData) => {
+    const data: any = await createRequirement(reqData)
+
+    if (data && data._id) {
+      addRequirement({
+        _id: data._id,
+        semesterNumber,
+      })
+    }
+
+    setIsReqModalOpen(false)
   }
 
   return (
@@ -94,7 +122,7 @@ const RequirementList = ({ semester, semesterNumber }: RequirementListProps) => 
                 >{totalCredits} credits</Text> */}
               </div>
               <Dropdown
-                overlay={menu(openDeleteModal)}
+                overlay={menu(openAddRequirementModal, openDeleteModal)}
                 trigger={['click']}
                 placement='bottomRight'
               >
@@ -118,36 +146,22 @@ const RequirementList = ({ semester, semesterNumber }: RequirementListProps) => 
             ))}
             {provided.placeholder}
           </Container>
-          <Modal
+          <ConfirmationModal
             isOpen={isDeleteModalOpen}
             onRequestClose={() => setIsDeleteModalOpen(false)}
-            isHideHeader
+            onConfirm={handleClickDelete}
+            confirmLabel='Delete'
+            heading='Delete semester'
+            description='All requirements within this semester will be permanently deleted.'
+          />
+          <Modal
+            isOpen={isReqModalOpen}
+            onRequestClose={() => setIsReqModalOpen(false)}
+            heading='Add requirement'
           >
-            <Text
-              variant='p'
-              fontWeight={500}
-            >Delete semester</Text>
-            <Space margin='.5rem 0' />
-            <Text
-              maxWidth={280}
-              variant='h6'
-            >All requirements within this semester will be permanently deleted</Text>
-            <Space margin='1rem 0' />
-            <FlexRow
-              alignCenter
-              justifyEnd
-            >
-              <Button
-                text
-                label='Cancel'
-                onClick={() => setIsDeleteModalOpen(true)}
-              />
-              <Space margin='0 .5rem' />
-              <Button
-                label='Delete'
-                onClick={handleClickDelete}
-              />
-            </FlexRow>
+            <RequirementForm
+              onSubmit={handleCreateRequirement}
+            />
           </Modal>
         </Wrapper>
       )}

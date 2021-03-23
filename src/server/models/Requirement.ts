@@ -9,7 +9,7 @@ const requirementSchema = new Schema({
   },
   credits: {
     type: Number,
-    required: true,
+    default: 3,
   },
   isFixedAssignment: {
     type: Boolean,

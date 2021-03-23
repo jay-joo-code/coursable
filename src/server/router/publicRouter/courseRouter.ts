@@ -22,8 +22,6 @@ courseRouter.get('/query', async (req, res) => {
       ? ''
       : firstLetter
 
-    console.log('subject, catalogNbr', subject, catalogNbr)
-
     // generate mongoose query
     const subjectFilter = subject ? { 'data.subject': subject.toUpperCase() } : {}
     const catalogNbrFilter = catalogNbr ? { 'data.catalogNbr': catalogNbr } : {}
@@ -36,7 +34,6 @@ courseRouter.get('/query', async (req, res) => {
     const docs = await Course.find(filter).limit(6)
     res.send(docs)
   } catch (e) {
-    console.log('e', e)
     res.status(500).send(e)
   }
 })

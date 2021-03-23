@@ -25,20 +25,16 @@ export const useRequirementById = (id) => {
 //   }
 // }
 
-// export const useCreateListing = <T>() => {
-//   const { mutate: createListing, ...rest } = useCustomMutation<ListingDoc>({
-//     url: '/private/listing',
-//     method: 'post',
-//     updateLocal: {
-//       queryConfigs: [fetchMyListingsConfig()],
-//       type: 'create',
-//     },
-//   })
-//   return {
-//     ...rest,
-//     createListing,
-//   }
-// }
+export const useCreateRequirement = () => {
+  const { mutateAsync: createRequirement, ...rest } = useCustomMutation<IRequirementDoc>({
+    url: '/public/requirement',
+    method: 'post',
+  })
+  return {
+    ...rest,
+    createRequirement,
+  }
+}
 
 export const useUpdateRequirementById = (_id: string) => {
   const { mutateAsync: updateRequirement, ...rest } = useCustomMutation<IRequirementDoc>({

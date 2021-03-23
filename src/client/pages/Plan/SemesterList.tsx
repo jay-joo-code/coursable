@@ -95,14 +95,11 @@ const SemesterList = ({ semesters }: SemesterListProps) => {
         <Container>
           <CreateSemesterButton semesterNumber={0} />
           {semesters?.map((semester, semesterNumber) => (
-            <>
-              <RequirementList
-                key={semesterNumber + 1}
-                semester={semester}
-                semesterNumber={semesterNumber}
-              />
-              <CreateSemesterButton semesterNumber={semesterNumber} />
-            </>
+            <RequirementList
+              key={semesterNumber + 1}
+              semester={semester}
+              semesterNumber={semesterNumber}
+            />
           ))}
         </Container>
       </DragDropContext>

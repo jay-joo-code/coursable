@@ -50,6 +50,27 @@ export const useUpdatePlanById = (psid: string | null) => {
   }
 }
 
+export const useAddRequirement = (psid: string | null) => {
+  const { mutateAsync: addRequirement, ...rest } = useCustomMutation<IPlanDoc>({
+    url: `/public/plan/${psid}/add-requirement`,
+    method: 'post',
+    updateLocal: {
+      queryConfigs: [fetchPlanByIdConfig(psid)],
+      mutationFn: (oldData, newVariables) => {
+        const { _id: requirementId, semesterNumber } = newVariables
+        oldData?.semesters[semesterNumber].push(requirementId)
+        return {
+          ...oldData,
+        }
+      },
+    },
+  })
+  return {
+    ...rest,
+    addRequirement,
+  }
+}
+
 export const useRemoveRequirement = (psid: string | null) => {
   const { mutateAsync: removeRequirement, ...rest } = useCustomMutation<IPlanDoc>({
     url: `/public/plan/${psid}/remove-requirement`,

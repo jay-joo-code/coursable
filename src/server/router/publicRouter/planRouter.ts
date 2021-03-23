@@ -64,16 +64,18 @@ planRouter.put('/:psid', async (req, res) => {
 
 planRouter.post('/:psid/add-requirement', async (req, res) => {
   try {
-    // create requirement and add to target semester
     const { psid } = req.params
-    const { semesterNumber, requirementData } = req.body
+    const { _id: requirementId, semesterNumber } = req.body
 
-    const newRequirement = await new Requirement(requirementData).save()
-    const plan = await Plan.findOne({ shortId: psid })
-    plan?.semesters[semesterNumber]?.push(newRequirement._id)
-    await plan?.save()
+    const query = {}
+    query[`semesters.${semesterNumber}`] = requirementId
+    const newPlan = await Plan.findOneAndUpdate(
+      { shortId: psid },
+      { $push: query },
+      { new: true }
+    )
 
-    res.send(plan)
+    res.send(newPlan)
   } catch (e) {
     res.status(500).send(e)
   }

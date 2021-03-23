@@ -1,7 +1,8 @@
 import React from 'react'
 import { IRequirementDoc } from 'src/types/requirement'
 import CourseInfo from './CourseInfo'
-import CourseSearch from './CourseSearch'
+import { useUpdateRequirementById } from 'src/api/requirement'
+import CourseSearch from 'src/components/courseSearch'
 import styled from 'styled-components'
 
 interface CourseTabProps {
@@ -14,6 +15,15 @@ const Container = styled.div`
 
 const CourseTab = ({ requirement }: CourseTabProps) => {
   const { course } = requirement || {}
+
+  const { updateRequirement } = useUpdateRequirementById(requirement?._id)
+
+  const handleClickCourse = (courseData) => {
+    updateRequirement({
+      courseId: courseData.crseId,
+      course: { data: courseData },
+    })
+  }
 
   if (course) {
     return (
@@ -28,7 +38,7 @@ const CourseTab = ({ requirement }: CourseTabProps) => {
 
   return (
     <Container>
-      <CourseSearch requirementId={requirement?._id} />
+      <CourseSearch handleClickCourse={handleClickCourse} />
     </Container>
   )
 }

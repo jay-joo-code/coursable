@@ -1,12 +1,11 @@
 import React from 'react'
-import { useUpdateRequirementById } from 'src/api/requirement'
 import theme from 'src/app/theme'
 import Text from 'src/components/text'
 import styled from 'styled-components'
 
 interface DropdownItemProps {
   courseData: any
-  requirementId: string
+  handleClickCourse: (courseData: any) => void
 }
 
 const Container = styled.div`
@@ -19,15 +18,8 @@ const Container = styled.div`
   }
 `
 
-const DropdownItem = ({ courseData, requirementId }: DropdownItemProps) => {
-  const { updateRequirement } = useUpdateRequirementById(requirementId)
-
-  const handleClick = () => {
-    updateRequirement({
-      courseId: courseData.crseId,
-      course: { data: courseData },
-    })
-  }
+const DropdownItem = ({ courseData, handleClickCourse }: DropdownItemProps) => {
+  const handleClick = () => handleClickCourse(courseData)
 
   return (
     <Container onClick={handleClick}>

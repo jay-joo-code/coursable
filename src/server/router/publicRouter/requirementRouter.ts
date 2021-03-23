@@ -3,6 +3,15 @@ import Requirement from '../../models/Requirement'
 
 const requirementRouter = express.Router()
 
+requirementRouter.post('/', async (req, res) => {
+  try {
+    const doc = await new Requirement(req.body).save()
+    res.send(doc)
+  } catch (e) {
+    res.status(500).send(e)
+  }
+})
+
 requirementRouter.get('/:id', async (req, res) => {
   try {
     const doc = await Requirement.findById(req.params.id)
@@ -14,9 +23,8 @@ requirementRouter.get('/:id', async (req, res) => {
 
 requirementRouter.put('/:id', async (req, res) => {
   try {
-    console.log('req.body :>> ', req.body)
-    const note = await Requirement.findByIdAndUpdate(req.params.id, req.body, { new: true })
-    res.send(note)
+    const doc = await Requirement.findByIdAndUpdate(req.params.id, req.body, { new: true })
+    res.send(doc)
   } catch (e) {
     res.status(500).send(e)
   }

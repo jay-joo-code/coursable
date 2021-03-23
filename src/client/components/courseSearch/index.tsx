@@ -9,7 +9,7 @@ import { useDebounce } from 'use-debounce'
 import DropdownItem from './DropdownItem'
 
 interface CourseSearchProps {
-  requirementId: string
+  handleClickCourse: (courseData: any) => void
 }
 
 const Container = styled(FlexColumn)`
@@ -24,7 +24,7 @@ const StyledDropdown = styled(Dropdown)`
   width: 100%;
 `
 
-const CourseSearch = ({ requirementId }: CourseSearchProps) => {
+const CourseSearch = ({ handleClickCourse }: CourseSearchProps) => {
   const [text, setText] = useState('')
   const [query] = useDebounce(text, 1000)
 
@@ -47,7 +47,7 @@ const CourseSearch = ({ requirementId }: CourseSearchProps) => {
           <DropdownItem
             key={data.crseId}
             courseData={data}
-            requirementId={requirementId}
+            handleClickCourse={handleClickCourse}
           />
         ))}
       </StyledDropdown>
