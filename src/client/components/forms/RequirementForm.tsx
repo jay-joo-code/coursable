@@ -57,7 +57,7 @@ const RequirementForm = ({ name, isFixedAssignment, courseData, onSubmit }: Requ
     event.preventDefault()
     onSubmit({
       ...data,
-      courseId: courseDataLocal?.crseId,
+      courseId: courseDataLocal?.crseId || null,
     })
   }
 
