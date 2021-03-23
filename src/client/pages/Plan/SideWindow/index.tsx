@@ -9,7 +9,7 @@ import { IRequirementDoc } from 'src/types/requirement'
 import { courseName } from 'src/util/roster'
 import styled from 'styled-components'
 import CourseTab from './CourseTab'
-import DropdownMenu from './DropdownMenu'
+import SideWindowMenu from './SideWindowMenu'
 import NotesTab from './NotesTab'
 
 interface SideWindowProps {
@@ -49,9 +49,13 @@ const SideWindow = ({ requirement, setIsWindowOpen }: SideWindowProps) => {
     ? courseName(course)
     : requirement.name
 
+  // outside click listener
+  const [isListenOutsideClick, setIsListenOutsideClick] = useState(true)
+
   return (
     <OutsideClickListener
       onOutsideClick={() => setIsWindowOpen(false)}
+      isListening={isListenOutsideClick}
     >
       <Container >
         <TopContainer>
@@ -92,7 +96,10 @@ const SideWindow = ({ requirement, setIsWindowOpen }: SideWindowProps) => {
               </>
             )}
           </div>
-          <DropdownMenu requirement={requirement} />
+          <SideWindowMenu
+            requirement={requirement}
+            setIsListenOutsideClick={setIsListenOutsideClick}
+          />
         </TopContainer>
         <Tabs
           currentValue={tab}

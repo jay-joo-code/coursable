@@ -47,7 +47,10 @@ const SlideInMenu = ({ isOpen, setIsOpen }: SlideInMenuProps) => {
   const navs = useNavs()
 
   return (
-    <OutsideClickListener onOutsideClick={() => setIsOpen(false)}>
+    <OutsideClickListener
+      onOutsideClick={() => setIsOpen(false)}
+      isListening={true}
+    >
       <Container isOpen={isOpen}>
         <TopRow justifySpaceBetween>
           <div />

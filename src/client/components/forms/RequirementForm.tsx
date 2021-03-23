@@ -57,7 +57,7 @@ const RequirementForm = ({ name, isFixedAssignment, courseData, onSubmit }: Requ
     event.preventDefault()
     onSubmit({
       ...data,
-      courseId: data.isFixedAssignment ? courseDataLocal?.crseId : null,
+      courseId: courseDataLocal?.crseId,
     })
   }
 
@@ -70,19 +70,13 @@ const RequirementForm = ({ name, isFixedAssignment, courseData, onSubmit }: Requ
           name='name'
           label='Requirement name'
           ref={register}
-          error={errors.name?.message || ''}
+          error={errors.name?.message || undefined}
           fullWidth
         />
         <Space margin='1.5rem 0' />
-        <Checkbox
-          name='isFixedAssignment'
-          label='Fix a course to this requirement'
-          ref={register}
-          error={errors.isFixedAssignment?.message || ''}
-        />
-        <Space margin='1rem 0' />
+
         {/* course search */}
-        {watch('isFixedAssignment') === true && !courseDataLocal && (
+        {!courseDataLocal && (
           <>
             <CourseSearch
               handleClickCourse={handleClickCourse}
@@ -92,7 +86,7 @@ const RequirementForm = ({ name, isFixedAssignment, courseData, onSubmit }: Requ
         )}
 
         {/* show assigned course */}
-        {watch('isFixedAssignment') === true && courseDataLocal && (
+        {courseDataLocal && (
           <>
             <div>
               <AssignmentContainer>
@@ -116,7 +110,14 @@ const RequirementForm = ({ name, isFixedAssignment, courseData, onSubmit }: Requ
                 variant='h6'
                 color={theme.textMuted}
                 style={{ marginLeft: '.3rem' }}
-              >{courseName(courseDataLocal)} is fixed to this requirement</Text>
+              >{watch('isFixedAssignment') ? `${courseName(courseDataLocal)} is fixed to this requirement` : ''}</Text>
+              <Space margin='1rem 0' />
+              <Checkbox
+                name='isFixedAssignment'
+                label='Fix course to this requirement'
+                ref={register}
+                error={errors.isFixedAssignment?.message || undefined}
+              />
             </div>
           </>
         )}
