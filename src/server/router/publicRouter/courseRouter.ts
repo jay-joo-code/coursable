@@ -1,36 +1,13 @@
 import express from 'express'
-import substringQuery from './../../util/substringQuery'
 import Course from '../../models/Course'
+import parseCourseQuery from '../../util/parseCourseQuery'
 
 const courseRouter = express.Router()
-
-const isNumeric = (value) => {
-  return /^-?\d+$/.test(value)
-}
 
 courseRouter.get('/query', async (req, res) => {
   try {
     const { query }: { query?: string } = req.query
-
-    // parse query
-    const match = query?.match(/\d+/)
-    const catalogNbr = match
-      ? match[0]
-      : ''
-    const firstLetter = query?.trim().split(' ')[0]
-    const subject = isNumeric(firstLetter)
-      ? ''
-      : firstLetter
-
-    // generate mongoose query
-    const subjectFilter = subject ? { 'data.subject': subject.toUpperCase() } : {}
-    const catalogNbrFilter = catalogNbr ? { 'data.catalogNbr': catalogNbr } : {}
-    const filter = substringQuery({
-      ...subjectFilter,
-      ...catalogNbrFilter,
-    }, ['data.subject', 'data.catalogNbr'])
-
-    // fetch docs
+    const filter = parseCourseQuery(query)
     const docs = await Course.find(filter).limit(6)
     res.send(docs)
   } catch (e) {
