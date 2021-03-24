@@ -48,15 +48,15 @@ const parseCourseQuery = (queryRaw: string) => {
   const filter = {
     ...substringQuery({
       ...catalogNbrFilter,
-      ...titleFilter
+      ...titleFilter,
     }, ['data.catalogNbr', 'data.titleShort']),
-    ...subjectFilter
+    ...subjectFilter,
   }
 
   if (subject && catalogNbr) {
     return filter
   } else {
-    const filterArr = []
+    const filterArr: any[] = []
     Object.entries(filter).forEach(([key, value]) => filterArr.push({ [key]: value }))
     return { $or: filterArr }
   }

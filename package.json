@@ -4,8 +4,9 @@
   "description": "Course planning at Cornell",
   "main": "server/index.js",
   "scripts": {
-    "build": "webpack --mode production && npx tsc -p tsconfig.server.json",
+    "build": "npm run build:client && npm run build:server",
     "build:client": "webpack --mode production",
+    "build:server": "npx tsc -p tsconfig.server.json",
     "start": "node server",
     "dev": "concurrently \"npm run server-dev\" \"npm run client\"",
     "client": "webpack-dev-server --mode development --devtool inline-source-map --hot --showConfig",

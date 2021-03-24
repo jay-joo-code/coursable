@@ -7,6 +7,7 @@ const courseRouter = express.Router()
 courseRouter.get('/query', async (req, res) => {
   try {
     const { query }: { query?: string } = req.query
+    if (!query) throw new Error('Query is undefined')
     const filter = parseCourseQuery(query)
     const docs = await Course.find(filter).limit(6)
     res.send(docs)

@@ -87,9 +87,11 @@ planRouter.post('/:psid/remove-requirement', async (req, res) => {
     const { _id: requirementId } = req.body
 
     const plan = await Plan.findOne({ shortId: psid })
-    const newSemesters = plan?.semesters.map((semester) => semester.filter((id) => requirementId !== id.toString()))
-    plan.semesters = newSemesters
-    await plan?.save()
+    if (plan) {
+      const newSemesters = plan?.semesters.map((semester) => semester.filter((id) => requirementId !== id.toString()))
+      plan.semesters = newSemesters
+      await plan?.save()
+    }
 
     res.send(plan)
   } catch (e) {
