@@ -1,20 +1,12 @@
-import Dropdown from 'antd/lib/dropdown'
-import Menu from 'antd/lib/menu'
-import React, { memo, useState } from 'react'
+import React, { memo } from 'react'
 import { Droppable } from 'react-beautiful-dnd'
-import { useAddRequirement, useDeleteSemester } from 'src/api/plan'
-import { useCreateRequirement } from 'src/api/requirement'
 import theme from 'src/app/theme'
-import RequirementForm from 'src/components/forms/RequirementForm'
-import Icon from 'src/components/icon'
 import { FlexRow, Space } from 'src/components/layout'
-import Modal from 'src/components/modal'
-import ConfirmationModal from 'src/components/modal/ConfirmationModal'
 import Text from 'src/components/text'
-import useCurrentPsid from 'src/hooks/useCurrentPsid'
 import { ISemester } from 'src/types/requirement'
 import styled from 'styled-components'
 import RequirementListItem from './RequirementListItem'
+import RequirementListMenu from './RequirementListMenu'
 
 interface RequirementListProps {
   semester: ISemester
@@ -39,58 +31,10 @@ const Container = styled.div<ContainerProps>`
   background: ${(props) => props.isDraggingOver && props.theme.brandBg};
 `
 
-const menu = (openAddRequirementModal, openDeleteModal) => (
-  <Menu>
-    <Menu.Item
-      onClick={openAddRequirementModal}
-    >
-      Add requirement
-    </Menu.Item>
-    <Menu.Item
-      style={{ color: theme.danger }}
-      onClick={openDeleteModal}
-    >
-      Delete
-    </Menu.Item>
-  </Menu>
-)
-
 const RequirementList = ({ semester, semesterNumber }: RequirementListProps) => {
   const heading = semesterNumber === 0
     ? 'Transfer Credits'
     : `Semester ${semesterNumber}`
-
-  const psid = useCurrentPsid()
-
-  // delete semester handling
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
-  const { deleteSemester } = useDeleteSemester(psid)
-
-  const openDeleteModal = () => setIsDeleteModalOpen(true)
-  const handleClickDelete = () => {
-    deleteSemester({ semesterNumber })
-
-    setIsDeleteModalOpen(false)
-  }
-
-  // add requirement handling
-  const [isReqModalOpen, setIsReqModalOpen] = useState(false)
-  const openAddRequirementModal = () => setIsReqModalOpen(true)
-  const { createRequirement } = useCreateRequirement()
-  const { addRequirement } = useAddRequirement(psid)
-
-  const handleCreateRequirement = async (reqData) => {
-    const data: any = await createRequirement(reqData)
-
-    if (data && data._id) {
-      addRequirement({
-        _id: data._id,
-        semesterNumber,
-      })
-    }
-
-    setIsReqModalOpen(false)
-  }
 
   return (
     <Droppable
@@ -121,19 +65,9 @@ const RequirementList = ({ semester, semesterNumber }: RequirementListProps) => 
                   fontWeight={400}
                 >{totalCredits} credits</Text> */}
               </div>
-              <Dropdown
-                overlay={menu(openAddRequirementModal, openDeleteModal)}
-                trigger={['click']}
-                placement='bottomRight'
-              >
-                <Icon
-                  variant='more-hori'
-                  size='1.75rem'
-                  fill={theme.textMuted}
-                  interactiveHover
-                  pointer
-                />
-              </Dropdown>
+              <RequirementListMenu
+                semesterNumber={semesterNumber}
+              />
             </FlexRow>
             <Space margin='1rem 0' />
             {semester.map((requirementId, row) => (
@@ -146,23 +80,6 @@ const RequirementList = ({ semester, semesterNumber }: RequirementListProps) => 
             ))}
             {provided.placeholder}
           </Container>
-          <ConfirmationModal
-            isOpen={isDeleteModalOpen}
-            onRequestClose={() => setIsDeleteModalOpen(false)}
-            onConfirm={handleClickDelete}
-            confirmLabel='Delete'
-            heading='Delete semester'
-            description='All requirements within this semester will be permanently deleted.'
-          />
-          <Modal
-            isOpen={isReqModalOpen}
-            onRequestClose={() => setIsReqModalOpen(false)}
-            heading='Add requirement'
-          >
-            <RequirementForm
-              onSubmit={handleCreateRequirement}
-            />
-          </Modal>
         </Wrapper>
       )}
     </Droppable>
